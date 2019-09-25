@@ -4,7 +4,7 @@
 # ASWF Sample Project
 
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Azure](https://dev.azure.com/academysoftwarefoundation/Academy%20Software%20Foundation/_apis/build/status/academysoftwarefoundation.openvdb)](https://dev.azure.com/academysoftwarefoundation/Academy%20Software%20Foundation/_build?definitionId=1&_a=summary)
+[![Build Status](https://dev.azure.com/panisset0719/aswf_sample_project/_apis/build/status/aswf_sample_project.ci?branchName=master)](https://dev.azure.com/panisset0719/aswf_sample_project/_build/latest?definitionId=12&branchName=master)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=imageworks_OpenColorIO&metric=alert_status)](https://sonarcloud.io/dashboard?id=imageworks_OpenColorIO)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2612/badge)](https://bestpractices.coreinfrastructure.org/projects/2612)
 
@@ -104,16 +104,19 @@ To run a build of your GitHub project using Azure Pipelines, you will first need
 From this point on we will attempt to configure Azure DevOps from the CLI as much as possible. For more general documentation see [Azure DevOps CLI](https://docs.microsoft.com/en-us/azure/devops/cli/?view=azure-devops#how-to-guides).
 
 1. [Install the Azure CLI on your local system](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli):
+
    * On [Windows](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows) using a MSI installer
    * On [macOS](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos) using the [Homebrew package manager](https://brew.sh/)
    * On Linux using [`apt` for Debian/Ubuntu](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt) or [`yum` for RHEL/Fedora/CentOS](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-yum)
 
 2. Install the Azure DevOps extension for the Azure CLI:
+
 ```bash
     az extension add --name azure-devops
 ```
 
 3. Create an Azure DevOps project, the name doesn't matter too much, but it would probably help if it matched the name of your GitHub repository. The `AZURE_DEVOPS_EXT_PAT` environment variable is used to provide the Azure DevOps PAT you previously generated to the command line tools.
+
 ```bash
     export AZURE_DEVOPS_EXT_PAT=YOUR_AZDEVOPS_PAT (macOS/Linux)
     set AZURE_DEVOPS_EXT_PAT=YOUR_AZDEVOPS_PAT (Windows)
@@ -122,12 +125,25 @@ From this point on we will attempt to configure Azure DevOps from the CLI as muc
     az devops configure --defaults project=AZDEVOPS_PROJECT_NAME
 ```
 
-4. Create a Pipeline which will link the Azure DevOps project to your GitHub project. The `AZURE_DEVOPS_EXT_GITHUB_PAT` environment variable is used to provide the GitHub PAT you previously generated to the command line tools, this will be required to allow Azure DevOps to connect to your GitHub account. This assumes the existence of a (stub) `azure-pipelines.yml` configuration file in the root directory of the GitHub project.
+4. Create a Pipeline which will link the Azure DevOps project to your GitHub project. The `AZURE_DEVOPS_EXT_GITHUB_PAT` environment variable is used to provide the GitHub PAT you previously generated to the command line tools, this will be required to allow Azure DevOps to connect to your GitHub account. This assumes the existence of a `azure-pipelines.yml` configuration file in the root directory of the GitHub project. The `--branch master` command line option specifies that the build pipeline will be triggered by any commits to the `master` branch in the GitHub repository.
+
 ```bash
     export AZURE_DEVOPS_EXT_GITHUB_PAT=YOUR_GITHUB_PAT (macOS/Linux)
     set AZURE_DEVOPS_EXT_GITHUB_PAT=YOUR_GITHUB_PAT (Windows)
     az devops service-endpoint github create --github-url https://github.com/GITHUB_ACCOUNT/GITHUB_PROJECT/settings --name GITHUB_PROJECT.connection
-    az pipelines create --name AZDEVOPS_PROJECT_NAME.ci --repository GITHUB_USER/GITHUB_PROJECT --branch master --repository-type github --service-connection GITHUBPROJECT.connection --skip-first-run --yml-path /azure-pipelines.yml
+    az pipelines create --name GITHUB_PROJECT.ci --repository GITHUB_USER/GITHUB_PROJECT --branch master --repository-type github --service-connection GITHUB_PROJECT.connection --skip-first-run --yml-path /azure-pipelines.yml
+```
+
+### Launching Builds
+
+The configuration from the previous section should have created a pipeline called `GITHUB_PROJECT.ci`, which by default compiles and runs a small C++ test program on Windows, macOS and Linux. The `--skip-first-run` command line option prevented a build from getting kicked off when the pipeline was created, but any commits to the `master` branch in the GitHub repository will kick off an automatic build, which you can monitor in the Azure DevOps web interface.
+
+You can launch a build manually from the command line:
+
+```bash
+    export AZURE_DEVOPS_EXT_PAT=YOUR_AZDEVOPS_PAT (macOS/Linux)
+    set AZURE_DEVOPS_EXT_PAT=YOUR_AZDEVOPS_PAT (Windows)
+    az pipelines build queue --definition-name GITHUB_PROJECT.ci 
 ```
 
 ## Static Analysis
