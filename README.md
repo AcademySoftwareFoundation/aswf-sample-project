@@ -85,6 +85,8 @@ CMake
 
 ASWF projects currently use Azure Pipelines from Microsoft (a component of the Azure DevOps service) to provide cross platform Continuous Integration functionality. Azure Pipelines provides Windows, macOS and Linux build agents free of charge for open source projects, and although GPU equiped build agents for running test suites that require GPU acceleration are not currently available, it is possible to add a custom build agent to the Agent Pool for your project.
 
+Typically Azure Pipelines looks for a file called `azure-pipelines.yml` in the root directory of the GitHub project which specifies build / test / release instructions to be executed by CI pipeline.
+
 ### Initial Configuration
 
 Once a project becomes an official ASWF project and moves its repository under the [AcademySoftwareFoundation GitHub organization](https://github.com/AcademySoftwareFoundation), it will be using the [ASWF Azure Pipelines build project](https://dev.azure.com/academysoftwarefoundation/Academy%20Software%20Foundation/) which is managed by the Linux Foundation Release Engineering team. But you will first want to get Azure Pipelines builds for your project running under your own login.
@@ -120,13 +122,12 @@ From this point on we will attempt to configure Azure DevOps from the CLI as muc
     az devops configure --defaults project=AZDEVOPS_PROJECT_NAME
 ```
 
-4. Create a Pipeline which will link the Azure DevOps project to your GitHub project. The `AZURE_DEVOPS_EXT_GITHUB_PAT` environment variable is used to provide the GitHub PAT you previously generated to the command line tools, this will be required to allow Azure DevOps to connect to your GitHub account.
+4. Create a Pipeline which will link the Azure DevOps project to your GitHub project. The `AZURE_DEVOPS_EXT_GITHUB_PAT` environment variable is used to provide the GitHub PAT you previously generated to the command line tools, this will be required to allow Azure DevOps to connect to your GitHub account. This assumes the existence of a (stub) `azure-pipelines.yml` configuration file in the root directory of the GitHub project.
 ```bash
     export AZURE_DEVOPS_EXT_GITHUB_PAT=YOUR_GITHUB_PAT (macOS/Linux)
     set AZURE_DEVOPS_EXT_GITHUB_PAT=YOUR_GITHUB_PAT (Windows)
     az devops service-endpoint github create --github-url https://github.com/GITHUB_ACCOUNT/GITHUB_PROJECT/settings --name GITHUB_PROJECT.connection
-    az pipelines create --name AZDEVOPS_PROJECT_NAME.CI --repository GITHUB_USER/GITHUB_PROJECT --branch master --repository-type github --service-connection GITHUBPROJECT.connection --skip-first-run
-    
+    az pipelines create --name AZDEVOPS_PROJECT_NAME.ci --repository GITHUB_USER/GITHUB_PROJECT --branch master --repository-type github --service-connection GITHUBPROJECT.connection --skip-first-run --yml-path /azure-pipelines.yml
 ```
 
 ## Static Analysis
