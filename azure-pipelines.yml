@@ -34,7 +34,7 @@ jobs:
       cd build
       cmake ..
       cmake --build .
-      hello.exe
+      Debug\hello.exe
     displayName: 'Build on Windows'
 
 - job: macOS
@@ -49,7 +49,7 @@ jobs:
       cd build
       cmake ..
       cmake --build .
-      Debug\hello.exe
+      ./hello
     displayName: 'Build on macOS'
 
 
