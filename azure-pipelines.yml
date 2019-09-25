@@ -17,7 +17,7 @@ jobs:
       cd src
       mkdir build
       cd build
-      cmake ../
+      cmake ..
       cmake --build .
       ./hello
     displayName: 'Build on Linux'
@@ -28,11 +28,11 @@ jobs:
 
   steps:
   - script: |
-      echo Building on macOS
+      echo Building on Windows
       cd src
       mkdir build
       cd build
-      cmake ../
+      cmake ..
       cmake --build .
       hello.exe
     displayName: 'Build on Windows'
@@ -47,9 +47,9 @@ jobs:
       cd src
       mkdir build
       cd build
-      cmake ../
+      cmake ..
       cmake --build .
-      ./hello
+      Debug\hello.exe
     displayName: 'Build on macOS'
 
 
