@@ -12,23 +12,44 @@ jobs:
     vmImage: 'ubuntu-latest'
 
   steps:
-  - script: echo hello from Linux
-    displayName: 'Run a one-line script'
+  - script: |
+      echo Building on Linux
+      cd src
+      mkdir build
+      cd build
+      cmake ../
+      cmake --build .
+      ./hello
+    displayName: 'Build on Linux'
 
 - job: Windows
   pool:
     vmImage: 'windows-latest'
 
   steps:
-  - script: echo hello from Windows
-    displayName: 'Run a one-line script'
+  - script: |
+      echo Building on macOS
+      cd src
+      mkdir build
+      cd build
+      cmake ../
+      cmake --build .
+      hello.exe
+    displayName: 'Build on Windows'
 
 - job: macOS
   pool:
     vmImage: 'macOS-latest'
 
   steps:
-  - script: echo hello from macOS
-    displayName: 'Run a one-line script'
+  - script: |
+      echo Building on macOS
+      cd src
+      mkdir build
+      cd build
+      cmake ../
+      cmake --build .
+      ./hello
+    displayName: 'Build on macOS'
 
 

@@ -67,8 +67,6 @@ project
 
 ## Maintainers List
 
-
-
 ## Website
 
 Consider hosting project web site from GitHub repository.
@@ -85,7 +83,9 @@ CMake
 
 ASWF projects currently use Azure Pipelines from Microsoft (a component of the Azure DevOps service) to provide cross platform Continuous Integration functionality. Azure Pipelines provides Windows, macOS and Linux build agents free of charge for open source projects, and although GPU equiped build agents for running test suites that require GPU acceleration are not currently available, it is possible to add a custom build agent to the Agent Pool for your project.
 
-Typically Azure Pipelines looks for a file called `azure-pipelines.yml` in the root directory of the GitHub project which specifies build / test / release instructions to be executed by CI pipeline.
+The free build agents provided by Microsoft are documented under [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops) and are configured with a significant amount of pre-installed software (see links to specific agents in the documentation for a list of available packages). Typically ASWF projects will want to control specific versions of tools and libraries used to build and test, additional mechanisms such as Containers and package managers can be used to configure the desired build environment.
+
+Azure Pipelines typically looks for a file called `azure-pipelines.yml` in the root directory of the GitHub project which specifies build / test / release instructions to be executed by CI pipeline.
 
 ### Initial Configuration
 
