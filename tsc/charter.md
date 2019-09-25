@@ -1,3 +1,6 @@
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<!-- Copyright 2019 Academy Software Foundation. -->
+
 **Technical Charter (the &quot;Charter&quot;) for [COMMUNITY NAME]**  **a Series of LF Projects, LLC**
 
 **Adopted \_\_\_\_\_\_\_\_\_\_\_**
