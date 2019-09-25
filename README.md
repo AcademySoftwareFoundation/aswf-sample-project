@@ -75,7 +75,7 @@ Consider hosting project web site from GitHub repository.
 
 ## Build Tools
 
-CMake
+ASWF projects typically use [CMake](https://cmake.org/) as a build tool to help support multiple platforms and leverage CMake modules that help with resolving the dependencies on packages and libraries used by projects. A useful resource for in depth CMake information is the book [Professional CMake: A Practical Guide](https://crascit.com/professional-cmake/) by Craig Scott.
 
 ## Continuous Integration
 
