@@ -13,14 +13,16 @@ jobs:
 
   steps:
   - script: |
-      echo Building on Linux
-      cd src
+      echo Build on Linux
       mkdir build
       cd build
       cmake ..
       cmake --build .
-      ./hello
     displayName: 'Build on Linux'
+  - script: |
+      echo Test on Linux
+      ctest .
+    displayName: 'Test on Linux'
 
 - job: Windows
   pool:
@@ -28,14 +30,16 @@ jobs:
 
   steps:
   - script: |
-      echo Building on Windows
-      cd src
+      echo Build on Windows
       mkdir build
       cd build
       cmake ..
       cmake --build .
-      Debug\hello.exe
     displayName: 'Build on Windows'
+  - script: |
+      echo Test on Windows
+      ctest .
+    displayName: 'Test on Windows'
 
 - job: macOS
   pool:
@@ -43,13 +47,14 @@ jobs:
 
   steps:
   - script: |
-      echo Building on macOS
-      cd src
+      echo Build on macOS
       mkdir build
       cd build
       cmake ..
       cmake --build .
-      ./hello
     displayName: 'Build on macOS'
-
+  - script: |
+      echo Test on macOS
+      ctest .
+    displayName: 'Test on macOS'
 
