@@ -69,9 +69,17 @@ project
 
 ## Maintainers List
 
+## Project Naming Considerations
+
+GitHub allows your project repository name to use letters [a-z], numbers [0-9], hyphens or underscores. But [RFC 952](https://tools.ietf.org/html/rfc952) and [RFC 1123](https://tools.ietf.org/html/rfc1123) specify that hostnames can only use letters, numbers and hyphens (ignoring for now internationalized domain names). Since it may be desirable to have network resources refer to the project name (such as the name of the project website), it is thus preferable to avoid using underscore characters in a project name.
+
 ## Website
 
 Consider hosting project web site from GitHub repository.
+
+## Project Logo
+
+If the project has a custom logo, consider providing a vector version of your logo in the repository, preferably in the [Scalable Vector Graphics (SVG)](https://www.w3.org/Graphics/SVG/) format. A vector logo is much more flexible than one which has been rasterized to a fixed resolution image file format such as [Portable Network Graphics (PNG)](https://www.w3.org/TR/PNG/). The [ASWF Landscape](https://landscape.aswf.io) uses SVG logos to represent notable open source projets in the industry.
 
 ## VFX Reference Platform
 
@@ -79,9 +87,12 @@ Consider hosting project web site from GitHub repository.
 
 ASWF projects typically use [CMake](https://cmake.org/) as a build tool to help support multiple platforms and leverage CMake modules that help with resolving the dependencies on packages and libraries used by projects. A useful resource for in depth CMake information is the book [Professional CMake: A Practical Guide](https://crascit.com/professional-cmake/) by Craig Scott.
 
-## Continuous Integration
+CMake can also be used to run the project test suite with [CTest](https://gitlab.kitware.com/cmake/community/wikis/doc/ctest/Testing-With-CTest), and can send test suite results to the [`CDash`](https://www.cdash.org/) dashboard.
 
-### Azure Pipelines / Azure DevOps
+[CPack](https://gitlab.kitware.com/cmake/community/wikis/doc/cpack/Packaging-With-CPack) can be used to generate installation packages in a variety of generic and OS-specific package formats such as `.rpm`, `.deb` or `.tar.gz` for Linux, `.msi` or `.zip` for Windows, `.dmg` or `.dmg` for macOS.
+
+
+## Continuous Integration With Azure DevOps / Azure Pipeline
 
 ASWF projects currently use Azure Pipelines from Microsoft (a component of the Azure DevOps service) to provide cross platform Continuous Integration functionality. Azure Pipelines provides Windows, macOS and Linux build agents free of charge for open source projects, and although GPU equiped build agents for running test suites that require GPU acceleration are not currently available, it is possible to add a custom build agent to the Agent Pool for your project.
 
@@ -93,7 +104,7 @@ Azure Pipelines typically looks for a file called `azure-pipelines.yml` in the r
 
 Once a project becomes an official ASWF project and moves its repository under the [AcademySoftwareFoundation GitHub organization](https://github.com/AcademySoftwareFoundation), it will be using the [ASWF Azure Pipelines build project](https://dev.azure.com/academysoftwarefoundation/Academy%20Software%20Foundation/) which is managed by the Linux Foundation Release Engineering team. But you will first want to get Azure Pipelines builds for your project running under your own login.
 
-#### GitHub and Azure DevOps UI Configuration
+### GitHub and Azure DevOps UI Configuration
 
 To run a build of your GitHub project using Azure Pipelines, you will first need to create an Azure DevOps account (assuming you don't already have one, and assuming you already have a GitHub account) and configure authentication in Azure DevOps and GitHub, which can only be done from the web interface:
 
@@ -101,7 +112,7 @@ To run a build of your GitHub project using Azure Pipelines, you will first need
 2. At the upper right corner of the Azure DevOps screen, click on the icon representing your account and select "Azure DevOps Profile". Under "User Settings -> Security" select "Personal Access Token". Select "+ New Token" to create a new token, name it "cli_access", under the "Organization" drop down select "All Accessible Organizations", and under "Scope" select "Full Access". Click on "Create" to create the token, make sure to record the value of the token in a safe place. This process is documented under [Authenticate access with personal access tokens](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate). This Personal Access Token (PAT) will let you authenticate CLI access to Azure DevOps. 
 3. Similarly you will need to create a [GitHub Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) to allow Azure DevOps to connect to your GitHub project. As per the [Build GitHub Repositories](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml) documentation under the section "Using a PAT", your GitHub PAT should have `repo`, `admin:repo_hook`, `read:user`, and `user:email` permissions. You can call the PAT "AzureDevOpsPAT" for instance. As with the Azure DevOps PAT make sure to record this token safely.
 
-#### Azure DevOps CLI Configuration
+### Azure DevOps CLI Configuration
 
 From this point on we will configure Azure DevOps from the CLI as much as possible. For more general documentation see [Azure DevOps CLI](https://docs.microsoft.com/en-us/azure/devops/cli/?view=azure-devops#how-to-guides). Each section is assumed to depend on the previous one to avoid repeating commands such as setting environment variables. The syntax is for `bash`, but the `az` command line tool works similarly on Windows.
 
@@ -139,6 +150,10 @@ From this point on we will configure Azure DevOps from the CLI as much as possib
     export CONNECTION_ID=$(az devops service-endpoint list  --query "[?name=='GITHUB_PROJECT.connection'].id" -o tsv)
     az pipelines create --name GITHUB_PROJECT.ci --repository GITHUB_USER/GITHUB_PROJECT --branch master --repository-type github --service-connection $CONNECTION_ID --skip-first-run --yml-path /azure-pipelines.yml
 ```
+
+### Control Azure DevOps from Python
+
+As an alternative to the Azure CLI, the [Azure DevOps Python API](https://github.com/Microsoft/azure-devops-python-api) can be accessed directly to automate Azure DevOps tasks.
 
 ### Launching Builds
 
