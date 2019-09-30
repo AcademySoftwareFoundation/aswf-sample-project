@@ -22,6 +22,7 @@ jobs:
   - script: |
       echo Test on Linux
       ctest .
+    workingDirectory: build
     displayName: 'Test on Linux'
 
 - job: Windows
@@ -39,6 +40,7 @@ jobs:
   - script: |
       echo Test on Windows
       ctest .
+    workingDirectory: build
     displayName: 'Test on Windows'
 
 - job: macOS
@@ -56,5 +58,6 @@ jobs:
   - script: |
       echo Test on macOS
       ctest .
+    workingDirectory: build
     displayName: 'Test on macOS'
 
