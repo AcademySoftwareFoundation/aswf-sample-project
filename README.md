@@ -170,6 +170,8 @@ SonarCloud, but lots of other options such as [Clang-Tidy](https://clang.llvm.or
 
 ## Automated Test Suite
 
+To mee the CII badge requirements, the project must have an automated test suite, and must have a policy that new tests must be added to the test suite when major new functionality is added to the project. There are several tools that can help create, run and monitor the results of a test suite, this sample project demonstrates trivially simple testing using [CTest](https://gitlab.kitware.com/cmake/community/wikis/doc/ctest/Testing-With-CTest).
+
 ## Ticketing System
 
 The ASWF provides an instance of the [JIRA ticketing system](https://jira.aswf.io/secure/Dashboard.jspa) for the use of its member projects. You will need to create a [Linux Foundation ID](https://identity.linuxfoundation.org/) to use this system. The native GitHub Issues mechanism in the project GitHub repository is also available. The TSC should define and document which ticketing system (or combination thereof) should be used and for what purpose.
