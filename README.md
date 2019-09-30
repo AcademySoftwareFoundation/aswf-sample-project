@@ -14,7 +14,7 @@ The purpose of this project is to provide a skeleton or sample Academy Software 
 
 The process for submitting a project for ASWF membership is documented in the [Project Contribution Proposal Template](https://github.com/AcademySoftwareFoundation/tac/blob/master/process/proposal_template.md). Once a project has been accepted as an Incubation Stage project, the next step is to move the project towards the Adopted Stage, as documented in the [Project Lifecycle Document](https://github.com/AcademySoftwareFoundation/tac/blob/master/process/lifecycle.md). A major part of the Project Graduation requirements are covered by meeting the "passing" [criteria for the Best Practices badge](https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md) defined by the [Linux Foundation's Core Infrastructure Initiative (CII)](https://bestpractices.coreinfrastructure.org/en).
 
-A lot of the information and files in this sample project are closely related to the CII badge requirements, or demonstrate the prefered way to implement these requirements in a ASWF project.
+A lot of the information and files in this sample project are closely related to the CII badge requirements, or demonstrate the preferred way to implement these requirements in a ASWF project.
 
 ## Source Code Repository
 
@@ -22,7 +22,7 @@ ASWF projects are hosted on [GitHub](https://github.com). Once a project has bee
 
 ## Licensing
 
-ASWF projects should chose an explicit [Open Source Initiative](https://opensource.org/licenses) approved open source license, you can use the [Choose a License](https://choosealicense.com/) site to help pick one. Existing projects will typically want to stick to their existing license, as relicensing can be a complex process. It is preferable to select an existing, unmodified, standard open source license since this simplifies the process of getting legal approval for use of the project within commmercial organizations, and allows the use of metadata to identify the project license.
+ASWF projects should chose an explicit [Open Source Initiative](https://opensource.org/licenses) approved open source license, you can use the [Choose a License](https://choosealicense.com/) site to help pick one. Existing projects will typically want to stick to their existing license, as relicensing can be a complex process. It is preferable to select an existing, unmodified, standard open source license since this simplifies the process of getting legal approval for use of the project within commercial organizations, and allows the use of metadata to identify the project license.
 
 If you are starting a new project, the ASWF recommends the use of the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0) for code assets, the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/) for non-code / documentation assets, and a [Community Data License Agreement](https://cdla.io/) for datasets.
 
@@ -36,7 +36,6 @@ Source files in your project should use [Software Package Data eXchange (SPDX)](
 ```
 
 More details about the the licensing and contribution requirements for ASWF projects can be found in [contributing.md in the ASWF TAC repository](https://github.com/AcademySoftwareFoundation/tac/blob/master/process/contributing.md).
-
 
 ## Basic Documentation
 
@@ -79,7 +78,7 @@ Consider hosting project web site from GitHub repository.
 
 ## Project Logo
 
-If the project has a custom logo, consider providing a vector version of your logo in the repository, preferably in the [Scalable Vector Graphics (SVG)](https://www.w3.org/Graphics/SVG/) format. A vector logo is much more flexible than one which has been rasterized to a fixed resolution image file format such as [Portable Network Graphics (PNG)](https://www.w3.org/TR/PNG/). The [ASWF Landscape](https://landscape.aswf.io) uses SVG logos to represent notable open source projets in the industry.
+If the project has a custom logo, consider providing a vector version of your logo in the repository, preferably in the [Scalable Vector Graphics (SVG)](https://www.w3.org/Graphics/SVG/) format. A vector logo is much more flexible than one which has been rasterized to a fixed resolution image file format such as [Portable Network Graphics (PNG)](https://www.w3.org/TR/PNG/). The [ASWF Landscape](https://landscape.aswf.io) uses SVG logos to represent notable open source projects in the industry.
 
 ## VFX Reference Platform
 
@@ -90,7 +89,6 @@ ASWF projects typically use [CMake](https://cmake.org/) as a build tool to help 
 CMake can also be used to run the project test suite with [CTest](https://gitlab.kitware.com/cmake/community/wikis/doc/ctest/Testing-With-CTest), and can send test suite results to the [`CDash`](https://www.cdash.org/) dashboard.
 
 [CPack](https://gitlab.kitware.com/cmake/community/wikis/doc/cpack/Packaging-With-CPack) can be used to generate installation packages in a variety of generic and OS-specific package formats such as `.rpm`, `.deb` or `.tar.gz` for Linux, `.msi` or `.zip` for Windows, `.dmg` or `.dmg` for macOS.
-
 
 ## Continuous Integration With Azure DevOps / Azure Pipeline
 
@@ -109,7 +107,7 @@ Once a project becomes an official ASWF project and moves its repository under t
 To run a build of your GitHub project using Azure Pipelines, you will first need to create an Azure DevOps account (assuming you don't already have one, and assuming you already have a GitHub account) and configure authentication in Azure DevOps and GitHub, which can only be done from the web interface:
 
 1. You can [login to Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/user-guide/sign-up-invite-teammates) either with a Microsoft account or with your GitHub credentials. You can create a [Microsoft Account](https://account.microsoft.com/) if you don't already have one and [login to Azure DevOps](https://azure.microsoft.com/en-us/services/devops/) using those credentials, or alternatively use "Start free with GitHub". This will create a default Azure DevOps organization based on your username.
-2. At the upper right corner of the Azure DevOps screen, click on the icon representing your account and select "Azure DevOps Profile". Under "User Settings -> Security" select "Personal Access Token". Select "+ New Token" to create a new token, name it "cli_access", under the "Organization" drop down select "All Accessible Organizations", and under "Scope" select "Full Access". Click on "Create" to create the token, make sure to record the value of the token in a safe place. This process is documented under [Authenticate access with personal access tokens](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate). This Personal Access Token (PAT) will let you authenticate CLI access to Azure DevOps. 
+2. At the upper right corner of the Azure DevOps screen, click on the icon representing your account and select "Azure DevOps Profile". Under "User Settings -> Security" select "Personal Access Token". Select "+ New Token" to create a new token, name it "cli_access", under the "Organization" drop down select "All Accessible Organizations", and under "Scope" select "Full Access". Click on "Create" to create the token, make sure to record the value of the token in a safe place. This process is documented under [Authenticate access with personal access tokens](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate). This Personal Access Token (PAT) will let you authenticate CLI access to Azure DevOps.
 3. Similarly you will need to create a [GitHub Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) to allow Azure DevOps to connect to your GitHub project. As per the [Build GitHub Repositories](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml) documentation under the section "Using a PAT", your GitHub PAT should have `repo`, `admin:repo_hook`, `read:user`, and `user:email` permissions. You can call the PAT "AzureDevOpsPAT" for instance. As with the Azure DevOps PAT make sure to record this token safely.
 
 ### Azure DevOps CLI Configuration
@@ -137,7 +135,7 @@ From this point on we will configure Azure DevOps from the CLI as much as possib
     az devops configure --defaults project=AZDEVOPS_PROJECT_NAME
 ```
 
-4. Create a Service Connection which will link your Azure DevOps project to your GitHub account, using both your Azure DevOps PAT and your GitHub PAT for authentication. 
+4. Create a Service Connection which will link your Azure DevOps project to your GitHub account, using both your Azure DevOps PAT and your GitHub PAT for authentication.
 
 ```bash
     export AZURE_DEVOPS_EXT_GITHUB_PAT=YOUR_GITHUB_PAT
@@ -163,7 +161,7 @@ You can launch a build manually from the command line:
 
 ```bash
     export AZURE_DEVOPS_EXT_PAT=YOUR_AZDEVOPS_PAT
-    az pipelines build queue --definition-name GITHUB_PROJECT.ci 
+    az pipelines build queue --definition-name GITHUB_PROJECT.ci
 ```
 
 ## Static Analysis
@@ -174,7 +172,7 @@ SonarCloud, but lots of other options such as [Clang-Tidy](https://clang.llvm.or
 
 ## Ticketing System
 
-The ASWF provides an instance of the [JIRA ticketing system](https://jira.aswf.io/secure/Dashboard.jspa) for the use of its member projects. You will need to create a [Linux Foundation ID](https://identity.linuxfoundation.org/) to use this system. The native GitHub Issues mechanism in the project GitHub repository is also vailable. The TSC should define and document which ticketing system (or combination thereof) should be used and for what purpose.
+The ASWF provides an instance of the [JIRA ticketing system](https://jira.aswf.io/secure/Dashboard.jspa) for the use of its member projects. You will need to create a [Linux Foundation ID](https://identity.linuxfoundation.org/) to use this system. The native GitHub Issues mechanism in the project GitHub repository is also available. The TSC should define and document which ticketing system (or combination thereof) should be used and for what purpose.
 
 ## Release Notes
 
