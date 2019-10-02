@@ -222,9 +222,12 @@ You will then need to create an authentication token for this CDash project whic
 
 ![CDash Project Creation](/images/cdash_token.png)
 
-You will next need to add the CDash token as a Secret in your GitHub project: got to the Settings tab for your project, select Secrects, and create an environment variable called `CTEST_CDASH_AUTH_TOKEN` and assign to it the value of the token you create in the CDash dashboard.
+You will next need to add the CDash token that was created as a secret variable called `CTEST_CDASH_AUTH_TOKEN` in your Azure Pipelines pipeline definition (assuming you named your pipeline `GITHUB_PROJECT.ci` as per the section on Azure DevOps CLI configuration).
 
-![GitHub Secret for CDash Integration](/images/github_cdash_secret.png)
+```bash
+export AZURE_DEVOPS_EXT_PAT=YOUR_AZDEVOPS_PAT
+az pipelines variable create --name CTEST_CDASH_AUTH_TOKEN --value YOUR_CDASH_TOKEN --secret true --allow-override true --pipeline-name GITHUB_PROJECT.ci 
+```
 
 The configuration to allow CTest to upload to CDash is found in the files [`CTestConfig.cmake`](CTestConfig.cmake) and the CTest script that will get run is in [`CTestScript.cmake`](CTestConfig.cmake).
 
