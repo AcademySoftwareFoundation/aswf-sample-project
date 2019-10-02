@@ -21,6 +21,9 @@ jobs:
     displayName: 'Build on Linux'
   - script: |
       echo Test on Linux
+      echo $CTEST_SOURCE_DIRECTORY
+      echo $CTEST_BUILD_NUMBER
+      echo $CTEST_SITE
       ctest --verbose -S ../CTestScript.cmake
     env:
       CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
@@ -43,6 +46,9 @@ jobs:
     displayName: 'Build on Windows'
   - script: |
       echo Test on Windows
+      echo $CTEST_SOURCE_DIRECTORY
+      echo $CTEST_BUILD_NUMBER
+      echo $CTEST_SITE
       ctest --verbose -S ../CTestScript.cmake
     env:
       CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
@@ -65,6 +71,9 @@ jobs:
     displayName: 'Build on macOS'
   - script: |
       echo Test on macOS
+      echo $CTEST_SOURCE_DIRECTORY
+      echo $CTEST_BUILD_NUMBER
+      echo $CTEST_SITE
       ctest --verbose -S ../CTestScript.cmake
     env:
       CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
