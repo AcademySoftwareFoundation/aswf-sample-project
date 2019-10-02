@@ -170,7 +170,43 @@ SonarCloud, but lots of other options such as [Clang-Tidy](https://clang.llvm.or
 
 ## Automated Test Suite
 
-To mee the CII badge requirements, the project must have an automated test suite, and must have a policy that new tests must be added to the test suite when major new functionality is added to the project. There are several tools that can help create, run and monitor the results of a test suite, this sample project demonstrates trivially simple testing using [CTest](https://gitlab.kitware.com/cmake/community/wikis/doc/ctest/Testing-With-CTest).
+To meet the CII badge requirements, the project must have an automated test suite, and must have a policy that new tests must be added to the test suite when major new functionality is added to the project. There are several tools that can help create, run and monitor the results of a test suite, this sample project demonstrates trivially simple testing using [CTest](https://gitlab.kitware.com/cmake/community/wikis/doc/ctest/Testing-With-CTest) with uploading of test results to [CDash](https://my.cdash.org/index.php?project=aswf-sample-project).
+
+
+### Testing with CTest
+
+In this simple example the tests are specified in [src/CMakeLists.txt](src/CMakeLists.txt). One test just runs the resulting binary to make sure it doesn't crash on startup, one test looks for the expected `Hello, world!` output.
+
+```bash
+# does the application run
+add_test (HelloRuns hello)
+# does it print what you expect
+add_test (HelloPrints hello)
+set_tests_properties (HelloPrints PROPERTIES PASS_REGULAR_EXPRESSION "Hello, World!")
+```
+The test suite can be run directly from the `build` directory:
+
+```bash
+cd build
+ctest .
+```
+
+which should answer something like:
+
+```bash
+Test project /path/to/build/directory
+    Start 1: HelloRuns
+1/2 Test #1: HelloRuns ........................   Passed    0.01 sec
+    Start 2: HelloPrints
+2/2 Test #2: HelloPrints ......................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   0.01 sec
+```
+### Uploading CTest results to CDash
+
+settings -> Secrets -> Add a new secret -> 
 
 ## Ticketing System
 
