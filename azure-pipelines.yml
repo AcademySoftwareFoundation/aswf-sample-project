@@ -21,18 +21,18 @@ pool:
 
 steps:
 - script: |
-    echo Build on $(Agent.OS)
+    echo Build on $(AGENT_OS)
     mkdir build
     cd build
     cmake ..
     cmake --build .
-  displayName: Build on $(Agent.OS)
+  displayName: Build on $(AGENT_OS)
 - script: |
-    echo Test on $(Agent.OS)
+    echo Test on $(AGENT_OS)
     ctest --verbose -S ../CTestScript.cmake
   env:
     CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
     CTEST_BUILD_NAME: $(Build.BuildNumber)
     CTEST_SITE: $(Agent.MachineName)
   workingDirectory: build
-  displayName: Test on $(Agent.OS)
+  displayName: Test on $(AGENT_OS)
