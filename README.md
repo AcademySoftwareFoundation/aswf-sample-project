@@ -245,7 +245,7 @@ ctest --verbose -S ../CTestScript.cmake
 
 to run the CTest script, and you should then be able to view the [test results on the CDash dashboard](https://my.cdash.org/index.php?project=aswf-sample-project):
 
-![CDash test results](images/(cdash_test_results.png)
+![CDash test results](images/cdash_test_results.png)
 
 ## Ticketing System
 
