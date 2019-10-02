@@ -21,7 +21,10 @@ jobs:
     displayName: 'Build on Linux'
   - script: |
       echo Test on Linux
+      echo $BUILD_SOURCESDIRECTORY
       ctest .
+    env:
+      BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory) 
     workingDirectory: build
     displayName: 'Test on Linux'
 
@@ -39,7 +42,10 @@ jobs:
     displayName: 'Build on Windows'
   - script: |
       echo Test on Windows
+      echo $BUILD_SOURCESDIRECTORY
       ctest .
+    env:
+      BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory) 
     workingDirectory: build
     displayName: 'Test on Windows'
 
@@ -57,7 +63,10 @@ jobs:
     displayName: 'Build on macOS'
   - script: |
       echo Test on macOS
+      echo $BUILD_SOURCESDIRECTORY
       ctest .
+    env:
+      BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory) 
     workingDirectory: build
     displayName: 'Test on macOS'
 
