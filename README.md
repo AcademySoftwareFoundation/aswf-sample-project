@@ -206,7 +206,42 @@ Total Test time (real) =   0.01 sec
 ```
 ### Uploading CTest results to CDash
 
-settings -> Secrets -> Add a new secret -> 
+[CDash](https://www.cdash.org/) is an open source web-based testing server developer by [Kitware](https://www.kitware.com/), who are also responsible for CMake. CTest has integration with CDash and can automatically upload test suite results to CDash for display and analysis.
+
+First, create a free account on [my.cdash.org](https://my.cdash.org) then once you are logged in, scroll to the bottom of the browser window to the Administration section and select "Start a new project". Use the name of your GitHub project as the CDash project name, select:
+
+* [x] Public Dashboard
+* [x] Authenticate Submission
+
+and save your changes with "Update Project". 
+
+![CDash Project Creation](/images/cdash_create_project.png)
+
+You will then need to create an authentication token for this CDash project which will be used by CTest to authenticate uploads of test results. Name this token the same as your GitHub / CDash project, create the token, and copy it to a safe location since you will not be able to access it again from the CDash interface.
+
+![CDash Project Creation](/images/cdash_token.png)
+
+You will next need to add the CDash token as a Secret in your GitHub project: got to the Settings tab for your project, select Secrects, and create an environment variable called `CTEST_CDASH_TOKEN` and assign to it the value of the token you create in the CDash dashboard.
+
+![GitHub Secret for CDash Integration](/images/github_cdash_secret.png)
+
+The configuration to allow CTest to upload to CDash is found in the files [`CTestConfig.cmake`](CTestConfig.cmake) and the CTest script that will get run is in [`CTestScript.cmake`](CTestConfig.cmake).
+
+The CI pipeline definition YAML file [azure-pipelines.yml](azure-pipelines.yml) must define the following environment variables before it can call CTest:
+
+- `CTEST_SOURCE_DIRECTORY`: the path to the current location of the project on the build agent
+- `CTEST_BUILD_NAME` : an identifier for the current build
+- `CTEST_SITE` : an identifier for the build agent
+
+After the build is complete, the build agents should then execute:
+
+```bash
+ctest --verbose -S ../CTestScript.cmake
+```
+
+to run the CTest script, and you should then be able to view the [test results on the CDash dashboard](https://my.cdash.org/index.php?project=aswf-sample-project):
+
+![CDash test results](images/(cdash_test_results.png)
 
 ## Ticketing System
 

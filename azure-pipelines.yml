@@ -1,7 +1,8 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Contributors to the ASWF Sample Project
+#
+# A simple multi-platform Azure Pipelines definition to build, run test suite
+# and upload results to test dashboard.
 
 strategy:
   matrix:
@@ -25,16 +26,13 @@ steps:
     cd build
     cmake ..
     cmake --build .
-  displayName: 'Build on $(Agent.OS)'
+  displayName: Build on $(Agent.OS)
 - script: |
     echo Test on $(Agent.OS)
-    echo $(CTEST_SOURCE_DIRECTORY)
-    echo $(CTEST_BUILD_NAME)
-    echo $(CTEST_SITE)
     ctest --verbose -S ../CTestScript.cmake
   env:
     CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
     CTEST_BUILD_NAME: $(Build.BuildNumber)
     CTEST_SITE: $(Agent.MachineName)
   workingDirectory: build
-  displayName: 'Test on $(Agent.OS)'
+  displayName: Test on $(Agent.OS)
