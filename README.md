@@ -222,7 +222,7 @@ You will then need to create an authentication token for this CDash project whic
 
 ![CDash Project Creation](/images/cdash_token.png)
 
-You will next need to add the CDash token as a Secret in your GitHub project: got to the Settings tab for your project, select Secrects, and create an environment variable called `CTEST_CDASH_TOKEN` and assign to it the value of the token you create in the CDash dashboard.
+You will next need to add the CDash token as a Secret in your GitHub project: got to the Settings tab for your project, select Secrects, and create an environment variable called `CTEST_CDASH_AUTH_TOKEN` and assign to it the value of the token you create in the CDash dashboard.
 
 ![GitHub Secret for CDash Integration](/images/github_cdash_secret.png)
 

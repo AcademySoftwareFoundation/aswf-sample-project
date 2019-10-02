@@ -16,6 +16,5 @@ set(CTEST_SITE "$ENV{CTEST_SITE}")
 ctest_start("Continuous")
 ctest_test()
 
-# CTEST_TOKEN should be set as an environment variable containing your CDash authorization token
-ctest_submit(HTTPHEADER "Authorization: Bearer $ENV{CTEST_CDASH_TOKEN}")
-
+# CTEST_CDASH_AUTH TOKEN should be set as an environment variable containing your CDash authorization token
+ctest_submit(HTTPHEADER "Authorization: Bearer $ENV{CTEST_CDASH_AUTH_TOKEN}")
