@@ -4,7 +4,7 @@
 # ASWF Sample Project
 
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
-[![Build Status](https://dev.azure.com/panisset0719/aswf_sample_project/_apis/build/status/aswf_sample_project.ci?branchName=master)](https://dev.azure.com/panisset0719/aswf_sample_project/_build/latest?definitionId=12&branchName=master)
+[![Build Status](https://dev.azure.com/panisset0719/aswf-sample-project/_apis/build/status/aswf-sample-project.ci?branchName=master)](https://dev.azure.com/panisset0719/aswf-sample-project/_build/latest?definitionId=12&branchName=master)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=imageworks_OpenColorIO&metric=alert_status)](https://sonarcloud.io/dashboard?id=imageworks_OpenColorIO)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2612/badge)](https://bestpractices.coreinfrastructure.org/projects/2612)
 
@@ -172,7 +172,6 @@ SonarCloud, but lots of other options such as [Clang-Tidy](https://clang.llvm.or
 
 To meet the CII badge requirements, the project must have an automated test suite, and must have a policy that new tests must be added to the test suite when major new functionality is added to the project. There are several tools that can help create, run and monitor the results of a test suite, this sample project demonstrates trivially simple testing using [CTest](https://gitlab.kitware.com/cmake/community/wikis/doc/ctest/Testing-With-CTest) with uploading of test results to [CDash](https://my.cdash.org/index.php?project=aswf-sample-project).
 
-
 ### Testing with CTest
 
 In this simple example the tests are specified in [src/CMakeLists.txt](src/CMakeLists.txt). One test just runs the resulting binary to make sure it doesn't crash on startup, one test looks for the expected `Hello, world!` output.
@@ -184,6 +183,7 @@ add_test (HelloRuns hello)
 add_test (HelloPrints hello)
 set_tests_properties (HelloPrints PROPERTIES PASS_REGULAR_EXPRESSION "Hello, World!")
 ```
+
 The test suite can be run directly from the `build` directory:
 
 ```bash
@@ -204,6 +204,7 @@ Test project /path/to/build/directory
 
 Total Test time (real) =   0.01 sec
 ```
+
 ### Uploading CTest results to CDash
 
 [CDash](https://www.cdash.org/) is an open source web-based testing server developer by [Kitware](https://www.kitware.com/), who are also responsible for CMake. CTest has integration with CDash and can automatically upload test suite results to CDash for display and analysis.
@@ -213,7 +214,7 @@ First, create a free account on [my.cdash.org](https://my.cdash.org) then once y
 * [x] Public Dashboard
 * [x] Authenticate Submission
 
-and save your changes with "Update Project". 
+and save your changes with "Update Project".
 
 ![CDash Project Creation](/images/cdash_create_project.png)
 
@@ -229,9 +230,9 @@ The configuration to allow CTest to upload to CDash is found in the files [`CTes
 
 The CI pipeline definition YAML file [azure-pipelines.yml](azure-pipelines.yml) must define the following environment variables before it can call CTest:
 
-- `CTEST_SOURCE_DIRECTORY`: the path to the current location of the project on the build agent
-- `CTEST_BUILD_NAME` : an identifier for the current build
-- `CTEST_SITE` : an identifier for the build agent
+* `CTEST_SOURCE_DIRECTORY`: the path to the current location of the project on the build agent
+* `CTEST_BUILD_NAME` : an identifier for the current build
+* `CTEST_SITE` : an identifier for the build agent
 
 After the build is complete, the build agents should then execute:
 
