@@ -3,82 +3,38 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+strategy:
+  matrix:
+    linux:
+      imageName: 'ubuntu-latest'
+    mac:
+      imageName: 'macOS-latest'
+    windows:
+      imageName: 'windows-latest'
+
 trigger:
 - master
 
-jobs:
-- job: Linux
-  pool:
-    vmImage: 'ubuntu-latest'
+pool:
+  vmImage: $(imageName)
 
-  steps:
-  - script: |
-      echo Build on Linux
-      mkdir build
-      cd build
-      cmake ..
-      cmake --build .
-    displayName: 'Build on Linux'
-  - script: |
-      echo Test on Linux
-      echo $CTEST_SOURCE_DIRECTORY
-      echo $CTEST_BUILD_NUMBER
-      echo $CTEST_SITE
-      ctest --verbose -S ../CTestScript.cmake
-    env:
-      CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
-      CTEST_BUILD_NUMBER: $(Build.BuildNumber)
-      CTEST_SITE: $(Agent.MachineName)
-    workingDirectory: build
-    displayName: 'Test on Linux'
-
-- job: Windows
-  pool:
-    vmImage: 'windows-latest'
-
-  steps:
-  - script: |
-      echo Build on Windows
-      mkdir build
-      cd build
-      cmake ..
-      cmake --build .
-    displayName: 'Build on Windows'
-  - script: |
-      echo Test on Windows
-      echo $CTEST_SOURCE_DIRECTORY
-      echo $CTEST_BUILD_NUMBER
-      echo $CTEST_SITE
-      ctest --verbose -S ../CTestScript.cmake
-    env:
-      CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
-      CTEST_BUILD_NUMBER: $(Build.BuildNumber)
-      CTEST_SITE: $(Agent.MachineName)
-    workingDirectory: build
-    displayName: 'Test on Windows'
-
-- job: macOS
-  pool:
-    vmImage: 'macOS-latest'
-
-  steps:
-  - script: |
-      echo Build on macOS
-      mkdir build
-      cd build
-      cmake ..
-      cmake --build .
-    displayName: 'Build on macOS'
-  - script: |
-      echo Test on macOS
-      echo $CTEST_SOURCE_DIRECTORY
-      echo $CTEST_BUILD_NUMBER
-      echo $CTEST_SITE
-      ctest --verbose -S ../CTestScript.cmake
-    env:
-      CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
-      CTEST_BUILD_NUMBER: $(Build.BuildNumber)
-      CTEST_SITE: $(Agent.MachineName)
-    workingDirectory: build
-    displayName: 'Test on macOS'
-
+steps:
+- script: |
+    echo Build on $(Agent.OS)
+    mkdir build
+    cd build
+    cmake ..
+    cmake --build .
+  displayName: 'Build on $(Agent.OS)'
+- script: |
+    echo Test on $(Agent.OS)
+    echo $(CTEST_SOURCE_DIRECTORY)
+    echo $(CTEST_BUILD_NAME)
+    echo $(CTEST_SITE)
+    ctest --verbose -S ../CTestScript.cmake
+  env:
+    CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
+    CTEST_BUILD_NAME: $(Build.BuildNumber)
+    CTEST_SITE: $(Agent.MachineName)
+  workingDirectory: build
+  displayName: 'Test on $(Agent.OS)'
