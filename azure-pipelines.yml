@@ -32,5 +32,6 @@ steps:
     CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
     CTEST_BUILD_NAME: $(Build.BuildNumber)
     CTEST_SITE: $(Agent.MachineName)
+    CTEST_CNAME_AUTH_TOKEN: $(CTEST_CNAME_AUTH_TOKEN)
   workingDirectory: build
   displayName: Test
