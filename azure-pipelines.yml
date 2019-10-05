@@ -2,36 +2,76 @@
 # Copyright Contributors to the ASWF Sample Project
 #
 # A simple multi-platform Azure Pipelines definition to build, run test suite
-# and upload results to test dashboard.
-
-strategy:
-  matrix:
-    linux:
-      imageName: 'ubuntu-latest'
-    mac:
-      imageName: 'macOS-latest'
-    windows:
-      imageName: 'windows-latest'
+# and upload results to test dashboard. Using 'matrix' would reduce duplication
+# but there's no such thing as macOS containers. Could move the steps to a separate
+# YAML file.
 
 trigger:
 - master
 
-pool:
-  vmImage: $(imageName)
+jobs:
 
-steps:
-- script: |
-    mkdir build
-    cd build
-    cmake ..
-    cmake --build .
-  displayName: Build
-- script: |
-    ctest --verbose -S ../CTestScript.cmake
-  env:
-    CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
-    CTEST_BUILD_NAME: $(Build.BuildNumber)
-    CTEST_SITE: $(Agent.MachineName)
-    CTEST_CDASH_AUTH_TOKEN: $(CTEST_CDASH_AUTH_TOKEN)
-  workingDirectory: build
-  displayName: Test
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-16.04'
+  container: aswf/ci-base:2020
+
+  steps:
+  - script: |
+      mkdir build
+      cd build
+      cmake ..
+      cmake --build .
+    displayName: Build
+  - script: |
+      ctest --verbose -S ../CTestScript.cmake
+    env:
+      CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
+      CTEST_BUILD_NAME: $(Build.BuildNumber)
+      CTEST_SITE: $(Agent.MachineName)
+      CTEST_CDASH_AUTH_TOKEN: $(CTEST_CDASH_AUTH_TOKEN)
+    workingDirectory: build
+    displayName: Test
+
+- job: Windows
+  pool:
+    vmImage: 'windows-latest'
+  container: panisset/buildtools2019
+
+  steps:
+  - script: |
+      mkdir build
+      cd build
+      cmake ..
+      cmake --build .
+    displayName: Build
+  - script: |
+      ctest --verbose -S ../CTestScript.cmake
+    env:
+      CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
+      CTEST_BUILD_NAME: $(Build.BuildNumber)
+      CTEST_SITE: $(Agent.MachineName)
+      CTEST_CDASH_AUTH_TOKEN: $(CTEST_CDASH_AUTH_TOKEN)
+    workingDirectory: build
+    displayName: Test
+
+- job: macOS
+  pool:
+    vmImage: 'macOS-latest'
+
+  steps:
+  - script: |
+      mkdir build
+      cd build
+      cmake ..
+      cmake --build .
+    displayName: Build
+  - script: |
+      ctest --verbose -S ../CTestScript.cmake
+    env:
+      CTEST_SOURCE_DIRECTORY: $(Build.SourcesDirectory)
+      CTEST_BUILD_NAME: $(Build.BuildNumber)
+      CTEST_SITE: $(Agent.MachineName)
+      CTEST_CDASH_AUTH_TOKEN: $(CTEST_CDASH_AUTH_TOKEN)
+    workingDirectory: build
+    displayName: Test

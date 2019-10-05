@@ -37,6 +37,14 @@ Source files in your project should use [Software Package Data eXchange (SPDX)](
 
 More details about the the licensing and contribution requirements for ASWF projects can be found in [contributing.md in the ASWF TAC repository](https://github.com/AcademySoftwareFoundation/tac/blob/master/process/contributing.md).
 
+## Project Naming Considerations
+
+GitHub allows your project repository name to use letters [a-z], numbers [0-9], hyphens or underscores. But [RFC 952](https://tools.ietf.org/html/rfc952) and [RFC 1123](https://tools.ietf.org/html/rfc1123) specify that hostnames can only use letters, numbers and hyphens (ignoring for now internationalized domain names). Since it may be desirable to have network resources refer to the project name (such as the name of the project website), it is thus preferable to avoid using underscore characters in a project name.
+
+## Project Logo
+
+If the project has a custom logo, consider providing a vector version of your logo in the repository, preferably in the [Scalable Vector Graphics (SVG)](https://www.w3.org/Graphics/SVG/) format. A vector logo is much more flexible than one which has been rasterized to a fixed resolution image file format such as [Portable Network Graphics (PNG)](https://www.w3.org/TR/PNG/). The [ASWF Landscape](https://landscape.aswf.io) uses SVG logos to represent notable open source projects in the industry. Projects hosted by the ASWF can leverage Linux Foundation Creative Services for developing a logo for the project.
+
 ## Basic Documentation
 
 Your project should have a README.md file in the project home directory, identifying the project and providing enough information to orient new users towards information and resources relevant to the project. The prefered format for in-tree documentation files which are likely to be viewed via the GitHub web interface is [Markdown text](https://guides.github.com/features/mastering-markdown/).
@@ -64,23 +72,28 @@ project
 
 ## Versioning and Releases
 
+The project must specify a versioning mechanism, and it is suggested that [Semantic Versioning](http://semver.org/) be used for consistency with other ASWF projects. The procedure for tagging and creating a release should be documented and should be automated as much as possible. In this sample project this is documented in [tsc/process/release.md](https://github.com/jfpanisset/aswf-sample-project/blob/master/tsc/process/release.md).
+
 ## Security and Reporting Mechanism
 
-## Maintainers List
+## Maintainers List and Code Ownership
 
-## Project Naming Considerations
+The project should include an up to date list of key contributors. This could take an ad hoc form such as the [OpenColorIO COMMITTERS.md file](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/COMMITTERS.md), and/or leverage the [GitHub CODEOWNERS mechanism](https://help.github.com/en/articles/about-code-owners) such as in the [OpenVDB CODEOWNERS file](https://github.com/AcademySoftwareFoundation/openvdb/blob/master/CODEOWNERS) which allows code review of pull requests to be automatically requested from owners of modified code.
 
-GitHub allows your project repository name to use letters [a-z], numbers [0-9], hyphens or underscores. But [RFC 952](https://tools.ietf.org/html/rfc952) and [RFC 1123](https://tools.ietf.org/html/rfc1123) specify that hostnames can only use letters, numbers and hyphens (ignoring for now internationalized domain names). Since it may be desirable to have network resources refer to the project name (such as the name of the project website), it is thus preferable to avoid using underscore characters in a project name.
 
-## Website
+## Project Website
 
-Consider hosting project web site from GitHub repository.
+Consider hosting project web site from GitHub repository, as this keeps all project-related content in a single repository and can help keep web site updates in sync with project updates. GitHub provides [simple web hosting](https://pages.github.com/) support which can be enabled in the GitHub Pages section of the [GitHub Project Settings](https://github.com/jfpanisset/aswf-sample-project/settings). For this sample project a stub [index.md](https://github.com/jfpanisset/aswf-sample-project/tree/master/docs) file was created in the `docs/` directory, and the project web site can be accessed at https://jfpanisset.github.io/aswf-sample-project/ (custom project DNS domain are supported and encouraged). GitHub Pages support HTTPS access, and the [Enforce HTTPS](https://help.github.com/en/articles/securing-your-github-pages-site-with-https) setting should be used to redirect HTTP access to HTTPS.
 
-## Project Logo
+Projects with more extensive website requirements may wish to use a separate GitHub repository to maintain their assets, and can make use of different site infrastructure.
 
-If the project has a custom logo, consider providing a vector version of your logo in the repository, preferably in the [Scalable Vector Graphics (SVG)](https://www.w3.org/Graphics/SVG/) format. A vector logo is much more flexible than one which has been rasterized to a fixed resolution image file format such as [Portable Network Graphics (PNG)](https://www.w3.org/TR/PNG/). The [ASWF Landscape](https://landscape.aswf.io) uses SVG logos to represent notable open source projects in the industry. Projects hosted by the ASWF can leverage Linux Foundation Creative Services for developing a logo for the project.
+## VFX Reference Platform and Docker Containers
 
-## VFX Reference Platform
+The [VFX Reference Platform](http://vfxplatform.com/) is a set of tool and library versions to be used as a common target platform for building software for the VFX industry. It is updated on an annual basis. ASWF projects are typically used in software environments that adhere to the VFX Reference Platforms, and will often run inside applications (in house or commercial) that are built according to the specification. ASWF projects should have a statement as to which versions of the VFX Reference Platform are supported, and should include those versions of the platform in their build and test environments.
+
+The [aswf-docker](https://github.com/AcademySoftwareFoundation/aswf-docker) project provides an environment to build Docker containers that can be used to build and test projects in a VFX Reference Platform compliant environment. It generates Docker containers which are published to the [aswf Docker hub repository](https://hub.docker.com/u/aswf).
+
+Azure Pipelines supports [building inside Docker containers](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops&tabs=yaml) on Linux and Windows. Building inside a container insulates the build from the software environment of the build agent and allows complete control over the toolchain and dependencies. ASWF projects are encouraged to make use of the ASWF build containers as much as possible when setting up their CI environment. Containers are not supported on the macOS platform: Azure Pipelines documents the current versions of packages pre-installed on [macOS 10.13](https://github.com/microsoft/azure-pipelines-image-generation/blob/master/images/macos/macos-10.13-Readme.md) and [macOS 10.14](https://github.com/microsoft/azure-pipelines-image-generation/blob/master/images/macos/macos-10.14-Readme.md) build agents: projects can use pre-installed package management systems such as [Homebrew](https://brew.sh/) or [Miniconda](https://docs.conda.io/projects/conda/en/latest/) to manage dependencies on that platform.
 
 ## Build Tools
 
@@ -164,10 +177,6 @@ You can launch a build manually from the command line:
     az pipelines build queue --definition-name GITHUB_PROJECT.ci
 ```
 
-## Static Analysis
-
-SonarCloud, but lots of other options such as [Clang-Tidy](https://clang.llvm.org/extra/clang-tidy/), [Cppcheck](http://cppcheck.sourceforge.net/), [Infer](https://fbinfer.com/), [LGTM](https://lgtm.com/), [PVS-Studio](https://www.viva64.com/en/pvs-studio/).
-
 ## Automated Test Suite
 
 To meet the CII badge requirements, the project must have an automated test suite, and must have a policy that new tests must be added to the test suite when major new functionality is added to the project. There are several tools that can help create, run and monitor the results of a test suite, this sample project demonstrates trivially simple testing using [CTest](https://gitlab.kitware.com/cmake/community/wikis/doc/ctest/Testing-With-CTest) with uploading of test results to [CDash](https://my.cdash.org/index.php?project=aswf-sample-project).
@@ -216,13 +225,13 @@ First, create a free account on [my.cdash.org](https://my.cdash.org) then once y
 
 and save your changes with "Update Project".
 
-![CDash Project Creation](/images/cdash_create_project.png)
+![CDash Project Creation](images/cdash_create_project.png)
 
-You will then need to create an authentication token for this CDash project which will be used by CTest to authenticate uploads of test results. Name this token the same as your GitHub / CDash project, create the token, and copy it to a safe location since you will not be able to access it again from the CDash interface.
+Next create an authentication token for this CDash project which will be used by CTest to authenticate uploads of test results. Name this token the same as your GitHub / CDash project, create the token, and copy it to a safe location since you will not be able to access it again from the CDash interface.
 
-![CDash Project Creation](/images/cdash_token.png)
+![CDash Token Creation](images/cdash_token.png)
 
-You will next need to add the CDash token that was created as a secret variable called `CTEST_CDASH_AUTH_TOKEN` in your Azure Pipelines pipeline definition (assuming you named your pipeline `GITHUB_PROJECT.ci` as per the section on Azure DevOps CLI configuration).
+THen add the CDash token that was created as a secret variable called `CTEST_CDASH_AUTH_TOKEN` in the Azure Pipelines pipeline definition (assuming you named your pipeline `GITHUB_PROJECT.ci` as per the section on Azure DevOps CLI configuration).
 
 ```bash
 export AZURE_DEVOPS_EXT_PAT=YOUR_AZDEVOPS_PAT
@@ -246,6 +255,10 @@ ctest --verbose -S ../CTestScript.cmake
 to run the CTest script, and you should then be able to view the [test results on the CDash dashboard](https://my.cdash.org/index.php?project=aswf-sample-project):
 
 ![CDash test results](images/cdash_test_results.png)
+
+## Static Analysis
+
+SonarCloud, but lots of other options such as [Clang-Tidy](https://clang.llvm.org/extra/clang-tidy/), [Cppcheck](http://cppcheck.sourceforge.net/), [Infer](https://fbinfer.com/), [LGTM](https://lgtm.com/), [PVS-Studio](https://www.viva64.com/en/pvs-studio/).
 
 ## Ticketing System
 
