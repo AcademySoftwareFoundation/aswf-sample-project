@@ -36,7 +36,7 @@ jobs:
 - job: Windows
   pool:
     vmImage: 'windows-latest'
-  container: panisset/buildtools2019
+  container: panisset/buildtools2019:test
 
   steps:
   - script: |
