@@ -33,9 +33,11 @@ jobs:
     workingDirectory: build
     displayName: Test
 
+  # Only the win1803 builders aka Windows Server Core 2016 SAC 1803 currently supports containers,
+  # and you must make sure your containers are built on the same Windows build (aka 1803).
 - job: Windows
   pool:
-    vmImage: 'windows-latest'
+    vmImage: 'win1803'
   container: panisset/buildtools2019:latest
 
   steps:
