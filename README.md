@@ -37,6 +37,14 @@ Source files in your project should use [Software Package Data eXchange (SPDX)](
 
 More details about the the licensing and contribution requirements for ASWF projects can be found in [contributing.md in the ASWF TAC repository](https://github.com/AcademySoftwareFoundation/tac/blob/master/process/contributing.md).
 
+## Contributor License Agreement (CLA)
+
+A Contributor License Agreement is a requirement that an individual or company must submit a legal document before a submission can be accepted by the project. This is typically the case when a project starts outside the ASWF and the initial project corporate sponsor enforces this requirement. The ASWF OpenColorIO project documents their [CLA Requirement](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/CONTRIBUTING.md#contributor-license-agreements) and uses the [EasyCLA](https://corporate.lfcla.com/) system to keep a record of signed CLA agreements, as well as verify that commits to the project come from contributors who have signed these agreements. If an ASWF project requires the use of CLAs, it is encouraged to use this system.
+
+## Developer Certificate of Origin (DCO)
+
+The Developer Certificate of Origin (DCO) is a lighter weight approach that allows a contributor to state that the code being submitted originated from the developer, or that the developer has the permission to submit the code. Typically the developer needs to use the `git commit -s` option to sign all commits with their email address. The [DCO GitHub app](https://github.com/apps/dco) should be added to the GitHub project to verify that all pull requests meet the requirement that the commits they include should be signed.
+
 ## Project Naming Considerations
 
 GitHub allows your project repository name to use letters [a-z], numbers [0-9], hyphens or underscores. But [RFC 952](https://tools.ietf.org/html/rfc952) and [RFC 1123](https://tools.ietf.org/html/rfc1123) specify that hostnames can only use letters, numbers and hyphens (ignoring for now internationalized domain names). Since it may be desirable to have network resources refer to the project name (such as the name of the project website), it is thus preferable to avoid using underscore characters in a project name.
