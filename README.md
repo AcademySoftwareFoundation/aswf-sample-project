@@ -10,6 +10,14 @@
 
 The purpose of this project is to provide a skeleton or sample Academy Software Foundation (ASWF) project reflecting the best practices that have been established by the Technical Advisory Committee (TAC). More detailed documentation can be found in the [Technical Advisory Committee repository](https://github.com/AcademySoftwareFoundation/tac).
 
+## Project Mission Statement
+
+The project should have a clearly defined mission statement, which should be labeled as such. The mission statement should be located near the top of the README.md file in the home directory of the project repository, as well as on the home page of the project web site. Projects can use their mission statement to help define what their project does, what problems it solves, what is outside the scope of the project, and what are the long term goals. This Linux Foundation blog post [Why and How to Set an Open Source Strategy](https://www.linuxfoundation.org/blog/2017/11/set-open-source-strategy/) shares some ideas as to what a mission statement for an open source project can look like.
+
+A simple mission statement for this ASWF Sample Project could be:
+
+>The ASWF Sample Project aims to capture and document the best practices that will help open source projects meet the requirements for ASWF acceptance to Incubation Stage, followed by project graduation to Adopted Stage. By encouraging and documenting common practices and infrastructure between ASWF projects, the ASWF Sample Project should help to avoid duplicated effort and facilitate contributing to multiple ASWF projects.
+
 ## Project Submission and Graduation
 
 The process for submitting a project for ASWF membership is documented in the [Project Contribution Proposal Template](https://github.com/AcademySoftwareFoundation/tac/blob/master/process/proposal_template.md). Once a project has been accepted as an Incubation Stage project, the next step is to move the project towards the Adopted Stage, as documented in the [Project Lifecycle Document](https://github.com/AcademySoftwareFoundation/tac/blob/master/process/lifecycle.md). A major part of the Project Graduation requirements are covered by meeting the "passing" [criteria for the Best Practices badge](https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md) defined by the [Linux Foundation's Core Infrastructure Initiative (CII)](https://bestpractices.coreinfrastructure.org/en).
