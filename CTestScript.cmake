@@ -16,5 +16,10 @@ set(CTEST_SITE "$ENV{CTEST_SITE}")
 ctest_start("Continuous")
 ctest_test()
 
-# CTEST_CDASH_AUTH TOKEN should be set as an environment variable containing your CDash authorization token
-ctest_submit(HTTPHEADER "Authorization: Bearer $ENV{CTEST_CDASH_AUTH_TOKEN}")
+# CTEST_CDASH_AUTH_TOKEN should be set as an environment variable containing your CDash authorization token
+# Skip upload if it is not set (could happen for PR build in a fork for instance)
+if (DEFINED ENV{CTEST_CDASH_AUTH_TOKEN})
+	ctest_submit(HTTPHEADER "Authorization: Bearer $ENV{CTEST_CDASH_AUTH_TOKEN}")
+else()
+	message(STATUS "CTEST_CDASH_AUTH_TOKEN not set, skipping upload to CDash")
+endif()

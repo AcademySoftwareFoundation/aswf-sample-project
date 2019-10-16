@@ -247,12 +247,26 @@ Next create an authentication token for this CDash project which will be used by
 
 ![CDash Token Creation](images/cdash_token.png)
 
-THen add the CDash token that was created as a secret variable called `CTEST_CDASH_AUTH_TOKEN` in the Azure Pipelines pipeline definition (assuming you named your pipeline `GITHUB_PROJECT.ci` as per the section on Azure DevOps CLI configuration).
+Then add the CDash token that was created as a secret variable called `CTEST_CDASH_AUTH_TOKEN` in the Azure Pipelines pipeline definition (assuming you named your pipeline `GITHUB_PROJECT.ci` as per the section on Azure DevOps CLI configuration). 
 
 ```bash
 export AZURE_DEVOPS_EXT_PAT=YOUR_AZDEVOPS_PAT
 az pipelines variable create --name CTEST_CDASH_AUTH_TOKEN --value YOUR_CDASH_TOKEN --secret true --allow-override true --pipeline-name GITHUB_PROJECT.ci 
 ```
+
+By default [secrets associated with a build pipeline are not made available to pull request builds of forks](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#validate-contributions-from-forks) which will cause automatic gating test builds for Pull Requests to fail since these are built from a separate fork.
+
+Unfortunately there is currently [no simple way to allow secrets access from fork builds via the Azure CLI](https://github.com/Azure/azure-devops-cli-extension/issues/836), so instead you need to follow these steps in the GUI:
+
+- In the sidebar of your Azure DevOps project, select `Pipelines / Pipelines`
+- Select the build pipeline, called GITHUB_PROJECT.ci
+- Click on the Edit button at the top right corner of the screen
+- Select the `...` drop down menu and pick the `Triggers` option
+- Select the `Pull request validation` trigger
+- Tick the `Make secrets available to builds of forks` option
+- Click on the `Save & queue` drop down menu, select `Save`
+
+Allowing fork builds access to secrets can be considered a security issue, since the fork / PR could be adding code to compromise the secret. An alternative approach is to skip sections of the build that require access to secrets stored in environment variables, and whenever possible use Service Connections instead. In this project conditional code in [CTestScript.cmake](https://github.com/jfpanisset/aswf-sample-project/blob/master/CTestScript.cmake) is used to prevent trying to upload test results if the access token environment variable is not set.
 
 The configuration to allow CTest to upload to CDash is found in the files [`CTestConfig.cmake`](CTestConfig.cmake) and the CTest script that will get run is in [`CTestScript.cmake`](CTestConfig.cmake).
 
