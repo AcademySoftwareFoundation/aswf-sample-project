@@ -18,6 +18,8 @@ jobs:
 
   steps:
   - script: |
+      docker info
+      cat /etc/docker/daemon.json
       mkdir build
       cd build
       cmake ..
