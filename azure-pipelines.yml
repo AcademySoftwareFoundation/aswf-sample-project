@@ -13,13 +13,11 @@ jobs:
 
 - job: Linux
   pool:
-    vmImage: 'ubuntu-16.04'
+    vmImage: 'ubuntu-18.04'
   container: aswf/ci-base:2020
 
   steps:
   - script: |
-      docker info
-      cat /etc/docker/daemon.json
       mkdir build
       cd build
       cmake ..
