@@ -301,12 +301,13 @@ Projects which produce C++ libraries to be consumed by applications should make 
 An example of this can be found in the top-level [CMakeLists.txt](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/CMakeLists.txt) CMake project file of the [OpenColorIO Project](https://github.com/AcademySoftwareFoundation/OpenColorIO):
 
 ```CMake
-if(NOT OCIO_NAMESPACE)
-	set(OCIO_NAMESPACE OpenColorIO CACHE STRING "Specify the master OCIO C++ namespace: Options include OpenColorIO OpenColorIO_<YOURFACILITY> etc.")
+set(OCIO_NAMESPACE OpenColorIO CACHE STRING "Specify the master OCIO C++ namespace: Options include OpenColorIO OpenColorIO_<YOURFACILITY> etc.")
 endif()
 ```
 
-It can also be useful to use nested namespaces to include the ABI version and build type of the library in the namespace, as demonstrated in [OpenColorABI.h.in](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/include/OpenColorIO/OpenColorABI.h.in) where `OpenColorABI.h.in` gets processed by CMake to create the `OpenColorABI.h` C++ header file: and
+This creates the `OCIO_NAMESPACE` CMake cached variable with the default value of `OpenColorIO`, this value can be overridden on the CMake command line with the option `-DOCIO_NAMESPACE=MyCustomOpenColorIOBranch` for instance.
+
+It is desirable to use nested namespaces to include the ABI version and build type of the library in the namespace, as demonstrated in [OpenColorABI.h.in](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/include/OpenColorIO/OpenColorABI.h.in) where `OpenColorABI.h.in` gets processed by CMake to create the `OpenColorABI.h` C++ header file: and
 
 ```C++
 #define OCIO_VERSION_NS v@OpenColorIO_VERSION_MAJOR@_@OpenColorIO_VERSION_MINOR@@OpenColorIO_VERSION_RELEASE_TYPE@
