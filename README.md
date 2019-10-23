@@ -302,7 +302,6 @@ An example of this can be found in the top-level [CMakeLists.txt](https://github
 
 ```CMake
 set(OCIO_NAMESPACE OpenColorIO CACHE STRING "Specify the master OCIO C++ namespace: Options include OpenColorIO OpenColorIO_<YOURFACILITY> etc.")
-endif()
 ```
 
 This creates the `OCIO_NAMESPACE` CMake cached variable with the default value of `OpenColorIO`, this value can be overridden on the CMake command line with the option `-DOCIO_NAMESPACE=MyCustomOpenColorIOBranch` for instance.
