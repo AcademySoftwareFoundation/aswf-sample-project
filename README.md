@@ -294,6 +294,47 @@ SonarCloud, but lots of other options such as [Clang-Tidy](https://clang.llvm.or
 
 The ASWF provides an instance of the [JIRA ticketing system](https://jira.aswf.io/secure/Dashboard.jspa) for the use of its member projects. You will need to create a [Linux Foundation ID](https://identity.linuxfoundation.org/) to use this system. The native GitHub Issues mechanism in the project GitHub repository is also available. The TSC should define and document which ticketing system (or combination thereof) should be used and for what purpose.
 
+## Library Namespaces
+
+Projects which produce C++ libraries to be consumed by applications should make it simple to control the namespace in which externally visible symbols are scoped. A typical Digital Content Creation (DCC) application may link directly against a specific version of a library, but through its plugin API may end up pulling in different versions as well. As a general rule ASWF C++ libraries must support running two instances of different versions in the same application.
+
+An example of this can be found in the top-level [CMakeLists.txt](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/CMakeLists.txt) CMake project file of the [OpenColorIO Project](https://github.com/AcademySoftwareFoundation/OpenColorIO):
+
+```CMake
+if(NOT OCIO_NAMESPACE)
+	set(OCIO_NAMESPACE OpenColorIO CACHE STRING "Specify the master OCIO C++ namespace: Options include OpenColorIO OpenColorIO_<YOURFACILITY> etc.")
+endif()
+```
+
+It can also be useful to use nested namespaces to include the ABI version and build type of the library in the namespace, as demonstrated in [OpenColorABI.h.in](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/include/OpenColorIO/OpenColorABI.h.in) where `OpenColorABI.h.in` gets processed by CMake to create the `OpenColorABI.h` C++ header file: and
+
+```C++
+#define OCIO_VERSION_NS v@OpenColorIO_VERSION_MAJOR@_@OpenColorIO_VERSION_MINOR@@OpenColorIO_VERSION_RELEASE_TYPE@
+#define OCIO_NAMESPACE_ENTER namespace OCIO_NAMESPACE { namespace OCIO_VERSION_NS
+#define OCIO_NAMESPACE_EXIT using namespace OCIO_VERSION_NS; }
+#define OCIO_NAMESPACE_USING using namespace OCIO_NAMESPACE;
+```
+
+The CMake symbols `OpenColorIO_VERSION_MAJOR` and `OpenColorIO_VERSION_MINOR` are defined to 2, 0 respectively in the top-level [CMakeLists.txt](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/CMakeLists.txt) by defining the `VERSION` keyword for the `project()` command:
+
+```CMake
+project(OpenColorIO
+    VERSION 2.0.0
+    LANGUAGES CXX C)
+```
+
+and `OpenColorIO_VERSION_RELEASE_TYPE` here would be `dev`:
+
+```CMake
+set(OpenColorIO_VERSION_RELEASE_TYPE "dev")
+```
+
+The same versioned ABI namespace should also be used to set the [SONAME CMake Property](https://cmake.org/cmake/help/latest/prop_tgt/SOVERSION.html) which is used to set the SONAME / ABI version of shared libraries built from the project.
+
+
+
+
+
 ## Release Notes
 
 ## Project Badges
