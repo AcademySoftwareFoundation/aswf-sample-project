@@ -306,7 +306,7 @@ set(OCIO_NAMESPACE OpenColorIO CACHE STRING "Specify the master OCIO C++ namespa
 
 This creates the `OCIO_NAMESPACE` CMake cached variable with the default value of `OpenColorIO`, this value can be overridden on the CMake command line with the option `-DOCIO_NAMESPACE=MyCustomOpenColorIOBranch` for instance.
 
-It is desirable to use nested namespaces to include the ABI version and build type of the library in the namespace, as demonstrated in [OpenColorABI.h.in](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/include/OpenColorIO/OpenColorABI.h.in) where `OpenColorABI.h.in` gets processed by CMake to create the `OpenColorABI.h` C++ header file (hence the use of '@' for token pasting in CMake rather than '##' in the C preprocessor):
+It is desirable to use nested namespaces that include the ABI version and build type of the library in the namespace, as demonstrated in [OpenColorABI.h.in](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/include/OpenColorIO/OpenColorABI.h.in) where `OpenColorABI.h.in` gets processed by CMake to create the `OpenColorABI.h` C++ header file (hence the use of '@' for token pasting in CMake rather than '##' in the C preprocessor):
 
 ```C++
 #define OCIO_VERSION_NS v@OpenColorIO_VERSION_MAJOR@_@OpenColorIO_VERSION_MINOR@@OpenColorIO_VERSION_RELEASE_TYPE@
@@ -330,10 +330,6 @@ set(OpenColorIO_VERSION_RELEASE_TYPE "dev")
 ```
 
 The same versioned ABI namespace should also be used to set the [SONAME CMake Property](https://cmake.org/cmake/help/latest/prop_tgt/SOVERSION.html) which is used to set the SONAME / ABI version of shared libraries built from the project.
-
-
-
-
 
 ## Release Notes
 
