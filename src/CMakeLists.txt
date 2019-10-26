@@ -3,6 +3,10 @@
 
 add_executable(hello hello.cpp)
 
+target_include_directories(hello
+        PRIVATE ${CMAKE_BINARY_DIR}
+)
+
 # does the application run
 add_test (HelloRuns hello)
 # does it print what you expect

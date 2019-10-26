@@ -1,0 +1,10 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright Contributors to the ASWF Sample Project
+
+#ifndef INCLUDED_ASWF_SAMPLE_PROJECT_HELLO_H
+#define INCLUDED_ASWF_SAMPLE_PROJECT_HELLO_H
+
+#define ASWF_SAMPLE_PROJECT_VERSION "@aswf-sample-project_VERSION@"
+#define ASWF_SAMPLE_PROJECT_VERSION_TAG "v@aswf-sample-project_VERSION_MAJOR@_@aswf-sample-project_VERSION_MINOR@"
+
+#endif

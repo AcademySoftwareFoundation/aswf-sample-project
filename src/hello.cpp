@@ -2,6 +2,8 @@
 // Copyright Contributors to the ASWF Sample Project
 
 #include <iostream>
+
+#include "include/hello.h"
  
 int main()
 {
