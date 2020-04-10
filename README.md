@@ -18,6 +18,8 @@ A simple mission statement for this ASWF Sample Project could be:
 
 >The ASWF Sample Project aims to capture and document the best practices that will help open source projects meet the requirements for ASWF acceptance to Incubation Stage, followed by project graduation to Adopted Stage. By encouraging and documenting common practices and infrastructure between ASWF projects, the ASWF Sample Project should help to avoid duplicated effort and facilitate contributing to multiple ASWF projects.
 
+The OpenEXR project demonstrates a [practical example of a mission statement for an ASWF project](https://github.com/openexr/openexr#openexr-project-mission).
+
 ## Project Submission and Graduation
 
 The process for submitting a project for ASWF membership is documented in the [Project Contribution Proposal Template](https://github.com/AcademySoftwareFoundation/tac/blob/master/process/proposal_template.md). Once a project has been accepted as an Incubation Stage project, the next step is to move the project towards the Adopted Stage, as documented in the [Project Lifecycle Document](https://github.com/AcademySoftwareFoundation/tac/blob/master/process/lifecycle.md). A major part of the Project Graduation requirements are covered by meeting the "passing" [criteria for the Best Practices badge](https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md) defined by the [Linux Foundation's Core Infrastructure Initiative (CII)](https://bestpractices.coreinfrastructure.org/en).
@@ -113,7 +115,9 @@ Azure Pipelines supports [building inside Docker containers](https://docs.micros
 
 ## Build Tools
 
-ASWF projects typically use [CMake](https://cmake.org/) as a build tool to help support multiple platforms and leverage CMake modules that help with resolving the dependencies on packages and libraries used by projects. A useful resource for in depth CMake information is the book [Professional CMake: A Practical Guide](https://crascit.com/professional-cmake/) by Craig Scott.
+ASWF projects typically use [CMake](https://cmake.org/) as a build tool to help support multiple platforms and leverage CMake modules that help with resolving the dependencies on packages and libraries used by projects. The CMake documentation includes a [basic tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html), and a useful resource for in depth CMake information is the book [Professional CMake: A Practical Guide](https://crascit.com/professional-cmake/) by Craig Scott.
+
+[An Introduction to Modern CMake](https://cliutils.gitlab.io/modern-cmake/) is another interesting source of guidance.
 
 CMake can also be used to run the project test suite with [CTest](https://gitlab.kitware.com/cmake/community/wikis/doc/ctest/Testing-With-CTest), and can send test suite results to the [`CDash`](https://www.cdash.org/) dashboard.
 
