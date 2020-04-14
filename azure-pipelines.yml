@@ -20,7 +20,7 @@ jobs:
   - script: |
       mkdir build
       cd build
-      cmake ..
+      cmake -DCMAKE_CXX_STANDARD=14 ..
       cmake --build .
     displayName: Build
   - script: |
@@ -44,7 +44,7 @@ jobs:
   - script: |
       mkdir build
       cd build
-      cmake ..
+      cmake -DCMAKE_CXX_STANDARD=14 ..
       cmake --build .
     displayName: Build
   - script: |
@@ -65,7 +65,7 @@ jobs:
   - script: |
       mkdir build
       cd build
-      cmake ..
+      cmake -DCMAKE_CXX_STANDARD=14 ..
       cmake --build .
     displayName: Build
   - script: |
