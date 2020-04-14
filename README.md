@@ -90,7 +90,7 @@ project
 
 ## Versioning and Releases
 
-The project must specify a versioning mechanism, and it is suggested that [Semantic Versioning](http://semver.org/) be used for consistency with other ASWF projects. The procedure for tagging and creating a release should be documented and should be automated as much as possible. In this sample project this is documented in [tsc/process/release.md](https://github.com/jfpanisset/aswf-sample-project/blob/master/tsc/process/release.md).
+The project must specify a versioning mechanism, and it is suggested that [Semantic Versioning](http://semver.org/) be used for consistency with other ASWF projects. The procedure for tagging and creating a release should be documented and should be automated as much as possible. In this sample project this is documented in [tsc/process/release.md](https://github.com/AcademySoftwareFoundation/aswf-sample-project/blob/master/tsc/process/release.md).
 
 ## Security and Reporting Mechanism
 
@@ -101,7 +101,7 @@ The project should include an up to date list of key contributors. This could ta
 
 ## Project Website
 
-Consider hosting project web site from GitHub repository, as this keeps all project-related content in a single repository and can help keep web site updates in sync with project updates. GitHub provides [simple web hosting](https://pages.github.com/) support which can be enabled in the GitHub Pages section of the [GitHub Project Settings](https://github.com/jfpanisset/aswf-sample-project/settings). For this sample project a stub [index.md](https://github.com/jfpanisset/aswf-sample-project/tree/master/docs) file was created in the `docs/` directory, and the project web site can be accessed at https://jfpanisset.github.io/aswf-sample-project/ (custom project DNS domain are supported and encouraged). GitHub Pages support HTTPS access, and the [Enforce HTTPS](https://help.github.com/en/articles/securing-your-github-pages-site-with-https) setting should be used to redirect HTTP access to HTTPS.
+Consider hosting project web site from GitHub repository, as this keeps all project-related content in a single repository and can help keep web site updates in sync with project updates. GitHub provides [simple web hosting](https://pages.github.com/) support which can be enabled in the GitHub Pages section of the [GitHub Project Settings](https://github.com/AcademySoftwareFoundation/aswf-sample-project/settings). For this sample project a stub [index.md](https://github.com/AcademySoftwareFoundation/aswf-sample-project/tree/master/docs) file was created in the `docs/` directory, and the project web site can be accessed at https://AcademySoftwareFoundation.github.io/aswf-sample-project/ (custom project DNS domain are supported and encouraged). GitHub Pages support HTTPS access, and the [Enforce HTTPS](https://help.github.com/en/articles/securing-your-github-pages-site-with-https) setting should be used to redirect HTTP access to HTTPS.
 
 Projects with more extensive website requirements may wish to use a separate GitHub repository to maintain their assets, and can make use of different site infrastructure.
 
@@ -270,7 +270,7 @@ Unfortunately there is currently [no simple way to allow secrets access from for
 - Tick the `Make secrets available to builds of forks` option
 - Click on the `Save & queue` drop down menu, select `Save`
 
-Allowing fork builds access to secrets can be considered a security issue, since the fork / PR could be adding code to compromise the secret. An alternative approach is to skip sections of the build that require access to secrets stored in environment variables, and whenever possible use Service Connections instead. In this project conditional code in [CTestScript.cmake](https://github.com/jfpanisset/aswf-sample-project/blob/master/CTestScript.cmake) is used to prevent trying to upload test results if the access token environment variable is not set.
+Allowing fork builds access to secrets can be considered a security issue, since the fork / PR could be adding code to compromise the secret. An alternative approach is to skip sections of the build that require access to secrets stored in environment variables, and whenever possible use Service Connections instead. In this project conditional code in [CTestScript.cmake](https://github.com/AcademySoftwareFoundation/aswf-sample-project/blob/master/CTestScript.cmake) is used to prevent trying to upload test results if the access token environment variable is not set.
 
 The configuration to allow CTest to upload to CDash is found in the files [`CTestConfig.cmake`](CTestConfig.cmake) and the CTest script that will get run is in [`CTestScript.cmake`](CTestConfig.cmake).
 
