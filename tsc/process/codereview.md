@@ -1,6 +1,9 @@
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<!-- Copyright Copyright Contributors to the [COMMUNITY NAME] Project -->
+
 # Code Reviewing and Merging PROJECT Pull Requests
 
-This documents the code review and merging process adopted by the OpenVDB TSC, and can be used as a basis for other ASWF projects.
+This documents the code review and merging process adopted by the [COMMUNITY NAME] TSC, and can be used as a basis for other ASWF projects.
 
 The Technical Steering Committee have write-access to the PROJECT repository and are responsible for triaging, reviewing and ultimately merging or rejecting GitHub pull requests. This document lists the policy and best practices to guide the TSC in this process.
 
