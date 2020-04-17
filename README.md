@@ -88,6 +88,16 @@ project
         └── security.md
 ```
 
+## TSC Meeting Agenda/Notes
+
+Best practice for a project is publish an agenda for every scheduled meeting ahead of time ( preferably the day before ) and then publish the notes after the meeting. Using the tsc directory structure above, the best place for meeting notes to live is under ```tsc``` using the ```yyyy-mm-dd.md``` naming convention.
+
+Agendas can be complied in a number of different ways, including...
+
+- Right in the same doc and shared as a pull request.
+- A shared Google Doc, which then you can use a tool like [Docs to Markdown](https://gsuite.google.com/marketplace/app/docs_to_markdown/700168918607) to produce clean markdown.
+- As a GitHub Issues, complied from other GitHub issues.
+
 ## Versioning and Releases
 
 The project must specify a versioning mechanism, and it is suggested that [Semantic Versioning](http://semver.org/) be used for consistency with other ASWF projects. The procedure for tagging and creating a release should be documented and should be automated as much as possible. In this sample project this is documented in [tsc/process/release.md](https://github.com/AcademySoftwareFoundation/aswf-sample-project/blob/master/tsc/process/release.md).
