@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+#
+# Copyright Academy Software Foundation and it's contributors
+# SPDX-License-Identifier: Apache-2.0
 
 import argparse
 import json
