@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
-<!-- Copyright Academy Software Foundation contributors -->
+<!-- Copyright Copyright Contributors to the [COMMUNITY NAME] Project -->
 
 # Technical Charter (the "Charter") for [COMMUNITY NAME] a Series of LF Projects, LLC
 
