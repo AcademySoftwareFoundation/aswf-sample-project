@@ -73,7 +73,7 @@ ASWF Projects are required to designate a Technical Steering Committee (TSC) whi
 
 A suggested directory structure for the TSC-related documents based on the OpenVDB project is the following:
 
-```
+```shell
 project
 ├── LICENSE
 ├── README.md
@@ -90,13 +90,27 @@ project
 
 ## TSC Meeting Agenda/Notes
 
-Best practice for a project is publish an agenda for every scheduled meeting ahead of time ( preferably the day before ) and then publish the notes after the meeting. Using the tsc directory structure above, the best place for meeting notes to live is under ```tsc``` using the ```yyyy-mm-dd.md``` naming convention.
+Best practice for a project is to publish an agenda for every scheduled meeting ahead of time ( preferably the day before ) and then publish the notes after the meeting. Using the tsc directory structure above, the best place for meeting notes to live is under ```tsc``` using the ```yyyy-mm-dd.md``` naming convention.
 
 Agendas can be complied in a number of different ways, including...
 
 - Right in the same doc and shared as a pull request.
 - A shared Google Doc, which then you can use a tool like [Docs to Markdown](https://gsuite.google.com/marketplace/app/docs_to_markdown/700168918607) to produce clean markdown.
 - As a GitHub Issues, complied from other GitHub issues.
+
+## Email Lists and Instant Message Infrastructure
+
+The project should offer clearly identified communication channels to facilitate interaction between developers, users, or developers and users. The project should define the best combination of mailing lists and/or instant message channels based on the needs of its community. The ASWF provides infrastructure that projects are encouraged to use.
+
+The [ASWF Mailing List Server](https://lists.aswf.io/) uses the [groups.io](https://groups.io/) service to host both general ASWF mailing lists (referenced from the [main ASWF site](https://www.aswf.io/get_involved/)) as well as project specific mailing lists. Links to project specific mailing lists should be clearly listed on the project website, a typical set of lists could be:
+
+* `project-announce` for general announcements such as new releases
+* `project-devel` for developer-oriented discussion
+* `project-user` for user-oriented discussion
+
+A project may also want to offer an "official" Instant Message server as a complement or alternative to the mailing lists. The ASWF provides a [ASWF Slack Instance](https://slack.aswf.io/) with channels for both general ASWF as well as project-specific topics. The ASWF Slack instance offers a simple onboarding interface where users can self-invite, and is discoverable from the [home page of the main ASWF web site](https://www.aswf.io/). The project web site should also prominently link to its Instant Message server.
+
+The Linux Foundation Release Engineering team can help with the creation of project mailing lists and Slack channels.
 
 ## Versioning and Releases
 
@@ -107,7 +121,6 @@ The project must specify a versioning mechanism, and it is suggested that [Seman
 ## Maintainers List and Code Ownership
 
 The project should include an up to date list of key contributors. This could take an ad hoc form such as the [OpenColorIO COMMITTERS.md file](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/COMMITTERS.md), and/or leverage the [GitHub CODEOWNERS mechanism](https://help.github.com/en/articles/about-code-owners) such as in the [OpenVDB CODEOWNERS file](https://github.com/AcademySoftwareFoundation/openvdb/blob/master/CODEOWNERS) which allows code review of pull requests to be automatically requested from owners of modified code.
-
 
 ## Project Website
 
@@ -261,11 +274,11 @@ Next create an authentication token for this CDash project which will be used by
 
 ![CDash Token Creation](images/cdash_token.png)
 
-Then add the CDash token that was created as a secret variable called `CTEST_CDASH_AUTH_TOKEN` in the Azure Pipelines pipeline definition (assuming you named your pipeline `GITHUB_PROJECT.ci` as per the section on Azure DevOps CLI configuration). 
+Then add the CDash token that was created as a secret variable called `CTEST_CDASH_AUTH_TOKEN` in the Azure Pipelines pipeline definition (assuming you named your pipeline `GITHUB_PROJECT.ci` as per the section on Azure DevOps CLI configuration).
 
 ```bash
 export AZURE_DEVOPS_EXT_PAT=YOUR_AZDEVOPS_PAT
-az pipelines variable create --name CTEST_CDASH_AUTH_TOKEN --value YOUR_CDASH_TOKEN --secret true --allow-override true --pipeline-name GITHUB_PROJECT.ci 
+az pipelines variable create --name CTEST_CDASH_AUTH_TOKEN --value YOUR_CDASH_TOKEN --secret true --allow-override true --pipeline-name GITHUB_PROJECT.ci
 ```
 
 By default [secrets associated with a build pipeline are not made available to pull request builds of forks](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#validate-contributions-from-forks) which will cause automatic gating test builds for Pull Requests to fail since these are built from a separate fork.
@@ -377,7 +390,6 @@ namespace MAP = MyAswfProject_v2_1;
 ```
 
 allows client code to refer to API functions as `MAP::foo()` without having to worry about the specific version, while still allowing global renaming of the library namespace from the CMake command line.
-
 
 ## Release Notes
 
