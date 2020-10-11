@@ -73,7 +73,7 @@ ASWF Projects are required to designate a Technical Steering Committee (TSC) whi
 
 A suggested directory structure for the TSC-related documents based on the OpenVDB project is the following:
 
-```
+```shell
 project
 ├── LICENSE
 ├── README.md
@@ -88,9 +88,33 @@ project
         └── security.md
 ```
 
+## TSC Meeting Agenda/Notes
+
+Best practice for a project is to publish an agenda for every scheduled meeting ahead of time ( preferably the day before ) and then publish the notes after the meeting. Using the tsc directory structure above, the best place for meeting notes to live is under ```tsc``` using the ```yyyy-mm-dd.md``` naming convention.
+
+Agendas can be complied in a number of different ways, including...
+
+- Right in the same doc and shared as a pull request.
+- A shared Google Doc, which then you can use a tool like [Docs to Markdown](https://gsuite.google.com/marketplace/app/docs_to_markdown/700168918607) to produce clean markdown.
+- As a GitHub Issues, complied from other GitHub issues.
+
+## Email Lists and Instant Message Infrastructure
+
+The project should offer clearly identified communication channels to facilitate interaction between developers, users, or developers and users. The project should define the best combination of mailing lists and/or instant message channels based on the needs of its community. The ASWF provides infrastructure that projects are encouraged to use.
+
+The [ASWF Mailing List Server](https://lists.aswf.io/) uses the [groups.io](https://groups.io/) service to host both general ASWF mailing lists (referenced from the [main ASWF site](https://www.aswf.io/get_involved/)) as well as project specific mailing lists. Links to project specific mailing lists should be clearly listed on the project website, a typical set of lists could be:
+
+* `project-announce` for general announcements such as new releases
+* `project-devel` for developer-oriented discussion
+* `project-user` for user-oriented discussion
+
+A project may also want to offer an "official" Instant Message server as a complement or alternative to the mailing lists. The ASWF provides a [ASWF Slack Instance](https://slack.aswf.io/) with channels for both general ASWF as well as project-specific topics. The ASWF Slack instance offers a simple onboarding interface where users can self-invite, and is discoverable from the [home page of the main ASWF web site](https://www.aswf.io/). The project web site should also prominently link to its Instant Message server.
+
+The Linux Foundation Release Engineering team can help with the creation of project mailing lists and Slack channels.
+
 ## Versioning and Releases
 
-The project must specify a versioning mechanism, and it is suggested that [Semantic Versioning](http://semver.org/) be used for consistency with other ASWF projects. The procedure for tagging and creating a release should be documented and should be automated as much as possible. In this sample project this is documented in [tsc/process/release.md](https://github.com/jfpanisset/aswf-sample-project/blob/master/tsc/process/release.md).
+The project must specify a versioning mechanism, and it is suggested that [Semantic Versioning](http://semver.org/) be used for consistency with other ASWF projects. The procedure for tagging and creating a release should be documented and should be automated as much as possible. In this sample project this is documented in [tsc/process/release.md](https://github.com/AcademySoftwareFoundation/aswf-sample-project/blob/master/tsc/process/release.md).
 
 ## Security and Reporting Mechanism
 
@@ -98,10 +122,9 @@ The project must specify a versioning mechanism, and it is suggested that [Seman
 
 The project should include an up to date list of key contributors. This could take an ad hoc form such as the [OpenColorIO COMMITTERS.md file](https://github.com/AcademySoftwareFoundation/OpenColorIO/blob/master/COMMITTERS.md), and/or leverage the [GitHub CODEOWNERS mechanism](https://help.github.com/en/articles/about-code-owners) such as in the [OpenVDB CODEOWNERS file](https://github.com/AcademySoftwareFoundation/openvdb/blob/master/CODEOWNERS) which allows code review of pull requests to be automatically requested from owners of modified code.
 
-
 ## Project Website
 
-Consider hosting project web site from GitHub repository, as this keeps all project-related content in a single repository and can help keep web site updates in sync with project updates. GitHub provides [simple web hosting](https://pages.github.com/) support which can be enabled in the GitHub Pages section of the [GitHub Project Settings](https://github.com/jfpanisset/aswf-sample-project/settings). For this sample project a stub [index.md](https://github.com/jfpanisset/aswf-sample-project/tree/master/docs) file was created in the `docs/` directory, and the project web site can be accessed at https://jfpanisset.github.io/aswf-sample-project/ (custom project DNS domain are supported and encouraged). GitHub Pages support HTTPS access, and the [Enforce HTTPS](https://help.github.com/en/articles/securing-your-github-pages-site-with-https) setting should be used to redirect HTTP access to HTTPS.
+Consider hosting project web site from GitHub repository, as this keeps all project-related content in a single repository and can help keep web site updates in sync with project updates. GitHub provides [simple web hosting](https://pages.github.com/) support which can be enabled in the GitHub Pages section of the [GitHub Project Settings](https://github.com/AcademySoftwareFoundation/aswf-sample-project/settings). For this sample project a stub [index.md](https://github.com/AcademySoftwareFoundation/aswf-sample-project/tree/master/docs) file was created in the `docs/` directory, and the project web site can be accessed at https://AcademySoftwareFoundation.github.io/aswf-sample-project/ (custom project DNS domain are supported and encouraged). GitHub Pages support HTTPS access, and the [Enforce HTTPS](https://help.github.com/en/articles/securing-your-github-pages-site-with-https) setting should be used to redirect HTTP access to HTTPS.
 
 Projects with more extensive website requirements may wish to use a separate GitHub repository to maintain their assets, and can make use of different site infrastructure.
 
@@ -251,11 +274,11 @@ Next create an authentication token for this CDash project which will be used by
 
 ![CDash Token Creation](images/cdash_token.png)
 
-Then add the CDash token that was created as a secret variable called `CTEST_CDASH_AUTH_TOKEN` in the Azure Pipelines pipeline definition (assuming you named your pipeline `GITHUB_PROJECT.ci` as per the section on Azure DevOps CLI configuration). 
+Then add the CDash token that was created as a secret variable called `CTEST_CDASH_AUTH_TOKEN` in the Azure Pipelines pipeline definition (assuming you named your pipeline `GITHUB_PROJECT.ci` as per the section on Azure DevOps CLI configuration).
 
 ```bash
 export AZURE_DEVOPS_EXT_PAT=YOUR_AZDEVOPS_PAT
-az pipelines variable create --name CTEST_CDASH_AUTH_TOKEN --value YOUR_CDASH_TOKEN --secret true --allow-override true --pipeline-name GITHUB_PROJECT.ci 
+az pipelines variable create --name CTEST_CDASH_AUTH_TOKEN --value YOUR_CDASH_TOKEN --secret true --allow-override true --pipeline-name GITHUB_PROJECT.ci
 ```
 
 By default [secrets associated with a build pipeline are not made available to pull request builds of forks](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#validate-contributions-from-forks) which will cause automatic gating test builds for Pull Requests to fail since these are built from a separate fork.
@@ -270,7 +293,7 @@ Unfortunately there is currently [no simple way to allow secrets access from for
 - Tick the `Make secrets available to builds of forks` option
 - Click on the `Save & queue` drop down menu, select `Save`
 
-Allowing fork builds access to secrets can be considered a security issue, since the fork / PR could be adding code to compromise the secret. An alternative approach is to skip sections of the build that require access to secrets stored in environment variables, and whenever possible use Service Connections instead. In this project conditional code in [CTestScript.cmake](https://github.com/jfpanisset/aswf-sample-project/blob/master/CTestScript.cmake) is used to prevent trying to upload test results if the access token environment variable is not set.
+Allowing fork builds access to secrets can be considered a security issue, since the fork / PR could be adding code to compromise the secret. An alternative approach is to skip sections of the build that require access to secrets stored in environment variables, and whenever possible use Service Connections instead. In this project conditional code in [CTestScript.cmake](https://github.com/AcademySoftwareFoundation/aswf-sample-project/blob/master/CTestScript.cmake) is used to prevent trying to upload test results if the access token environment variable is not set.
 
 The configuration to allow CTest to upload to CDash is found in the files [`CTestConfig.cmake`](CTestConfig.cmake) and the CTest script that will get run is in [`CTestScript.cmake`](CTestConfig.cmake).
 
