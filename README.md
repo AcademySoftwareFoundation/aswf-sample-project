@@ -391,6 +391,10 @@ namespace MAP = MyAswfProject_v2_1;
 
 allows client code to refer to API functions as `MAP::foo()` without having to worry about the specific version, while still allowing global renaming of the library namespace from the CMake command line.
 
+## Repolinter
+
+This project has enabled [repolinter](https://github.com/todogroup/repolinter) from [TODO Group](https://todogroup.org/). This tool checks repos for common errors in your repository setup. By default it runs weekly at 00:00 GMT on Sunday as a Github Action; notifications on this job success or failure is set by a user's [notification options](https://docs.github.com/en/free-pro-team@latest/github/managing-subscriptions-and-notifications-on-github/configuring-notifications#github-actions-notification-options)
+
 ## Release Notes
 
 ## Project Badges
