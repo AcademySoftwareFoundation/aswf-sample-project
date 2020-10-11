@@ -1,5 +1,7 @@
-name: Lint repository
-on: [push]
+name: Weekly Lint repository
+on: 
+  schedule:
+    - cron: "0 0 * * 0"
 
 jobs:
   repo-lint:
@@ -14,5 +16,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - run: npm install -g git+https://github.com/todogroup/repolinter.git
+      - run: npm install -g github:todogroup/repolinter.git#ae6688cddeed312d45a50d7439ae71383eb660e2
       - run: repolinter lint -g $GITHUB_SERVER_URL/$GITHUB_REPOSITORY
