@@ -18,4 +18,12 @@ Anyone can contribute to this repository - learn more at [CONTRIBUTING.md](CONTR
 _Project Name_ is a project hosted by [ASWF](https://aswf.io). This project has established it's own processes for managing day-to-day processes in the project at [GOVERNANCE.md](GOVERNANCE.md).
 
 # Reporting Issues
-To report a problem, you can open an [issue](https://github.com/AcademySoftwareFoundation/example-project/issues). If the issue is senstive in nature or a security related issue, please do not report in the issue tracker but instead email _example-project-private@lists.aswf.io_.
+
+To report a problem, you can open an
+[issue](https://github.com/AcademySoftwareFoundation/example-project/issues).
+
+If the issue is senstive in nature or a security related issue, please
+do not report in the issue tracker but instead email
+security@_project_.org. Refer to [SECURITY-example.md] for more
+information about the project security policy.
+
