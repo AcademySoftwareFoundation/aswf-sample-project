@@ -24,7 +24,7 @@ of trusted maintainers.
 A typical security policy is to respond to vulernability reports
 within 14 days. 
 
-## Common Vulnerabilities and Exposures
+## Common Vulnerabilities and Exposures (CVE)
 
 If a bug becomes publicly known, or there is any public perception
 that it may represent an exploitable security vector, it may warrant a
