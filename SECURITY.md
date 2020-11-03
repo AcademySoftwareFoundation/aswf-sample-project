@@ -10,7 +10,12 @@ certain situations can lead to a Denial-of-Service attack.
 
 If you discover a crash in a publicly released version of the project,
 you may choose to simply fix it and release a new version, mentioning
-the fix in the release notes.
+the fix in the release notes. This is sufficient if there is no
+indication that the bug is publicly known or widely recognized.
+
+Software that is widely used, either on its own or as a component of
+other widely used applications, must take vulnerabilities seriously,
+especially if the software implements an input file format.
 
 ## Reporting Vulnerabilities
 
@@ -76,9 +81,10 @@ created, the entry can be updated with additional information.
 The description of a CVE should provide enough details to distinguish
 it from other vulnerabilies. The description should identify the
 nature of the vulnerability, the software component and/or product
-together with the affected version, together with the implications of
-the vulnerability. See the [CVE Project
-documentation](http://cveproject.github.io/docs/content/key-details-phrasing.pdf)
+together with the affected version, together with an indication of the
+implications of the vulnerability. See the CVE Project's documentation
+on [key details
+phrasing](http://cveproject.github.io/docs/content/key-details-phrasing.pdf)
 for further naming guidelines.
 
 Example CVE ID's and descriptions:
@@ -167,13 +173,13 @@ significantly over time.
 ASWF projects typically make software available for download via
 GitHub's "Releases" page, through a link that downloads the source to
 a .zip or .tar.gz "tarball" or by simply cloning the repo at a given
-git tag.
+git tag. This is generally regarded as safe and secure by most users.
 
 Some users may request an additional level of integrity guarantee,
 especially Linux distributions who package and redistribute libraries
-as a part of the operation system. You can
-[sign](https://wiki.debian.org/Creating%20signed%20GitHub%20releases)
-your releases using GnuPG, using the steps outlined by Debian. This
+as a part of the operation system. You can sign GitHub releases using
+GnuPG with [steps outlined by
+Debian](https://wiki.debian.org/Creating%20signed%20GitHub%20releases). This
 gives the user the ability to verify that the downloaded code is
 exacty what the maintainers intended.
 
