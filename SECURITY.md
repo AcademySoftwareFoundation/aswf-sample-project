@@ -42,7 +42,7 @@ the users of software to know the state of software they are using.
 ### Requesting CVE ID's
 
 CVE ID's are generated, assigned, and cataloged by a "CVE Numbering
-Authority" (CNA). Many familiar companies and organization act as
+Authority" (CNA). Many familiar companies and organizations act as
 CNA's, including Apple, Autodesk, GitHub, Google, etc. The MITRE
 Corporation acts as a "CNA of Last Resort", for vulnerabilities in
 software projects not associated with any other numbering
@@ -65,7 +65,7 @@ project that exhibit the bug and the versions in which it is resolved.
 Occasionally, a security researcher will identify a vulnerability and
 request a CVE ID for it themselves. This makes the vulnerability
 public, in which case the project should respond promptly to prepare a
-new release that address the issue. This may happen in the case where
+new release that addresses the issue. This may happen in the case where
 it is not obvious to users how to report the issue to the project from
 the outset, hence the need to publicize a reporting policy. Because
 CVE's are public, a CVE without a corresponding software patch demands
@@ -81,7 +81,7 @@ created, the entry can be updated with additional information.
 The description of a CVE should provide enough details to distinguish
 it from other vulnerabilies. The description should identify the
 nature of the vulnerability, the software component and/or product
-together with the affected version, together with an indication of the
+together with the affected version(s), together with an indication of the
 implications of the vulnerability. See the CVE Project's documentation
 on [key details
 phrasing](http://cveproject.github.io/docs/content/key-details-phrasing.pdf)
@@ -119,7 +119,7 @@ by that release.
 ## Out-of-Memory Errors
 
 A secure and robust library API should safeguard against memory
-allocation faults, or attempts to allocate more than the avaible
+allocation faults, or attempts to allocate more than the available
 memory. If triggerable via an input data file, such a fault can be
 used in a Denial-of-Service attack. Ideally, allocation attempts are
 reported as errors before they lead to actual crashes.
@@ -136,7 +136,7 @@ typically executed with "sanitizer" compiler options that cause
 invalid or undefined behavior to be reported as errors.
 
 The typical way to execute a sanitizer is via the
-``-fsantize=undefined,address`` argument to ``gcc`` or ``clang``.
+``-fsanitize=undefined,address`` argument to ``gcc`` or ``clang``.
 
 Sanitizers often report behavior that does not necessarily represent
 an exploitable vector for an attacker, such as integer overflow or

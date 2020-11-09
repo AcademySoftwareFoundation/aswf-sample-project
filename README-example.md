@@ -20,7 +20,7 @@ _Project Name_ is a project hosted by [ASWF](https://aswf.io). This project has 
 # Reporting Issues
 
 To report a problem, you can open an
-[issue](https://github.com/AcademySoftwareFoundation/example-project/issues).
+[issue](https://github.com/AcademySoftwareFoundation/aswf-sample-project/issues).
 
 If the issue is senstive in nature or a security related issue, please
 do not report in the issue tracker but instead email
