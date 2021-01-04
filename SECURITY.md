@@ -182,5 +182,3 @@ GnuPG with [steps outlined by
 Debian](https://wiki.debian.org/Creating%20signed%20GitHub%20releases). This
 gives the user the ability to verify that the downloaded code is
 exacty what the maintainers intended.
-
-
