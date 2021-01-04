@@ -1,1 +1,1 @@
-The [COMMUNITY NAME] project abides by the LF Projects LLC code of conduct, which you can read in full at https://lfprojects.org/policies/code-of-conduct.
+The [COMMUNITY NAME] project abides by the LF Projects LLC code of conduct, which you can read in full at https://lfprojects.org/policies/code-of-conduct. Please contact conduct@aswf.io to report any violations or concerns.
