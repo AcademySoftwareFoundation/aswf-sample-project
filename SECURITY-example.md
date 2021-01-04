@@ -9,10 +9,8 @@ please report it by emailing security@_project_.org. Only Technical
 Steering Committee members and Academy Software Foundation project
 management have access to these messages. Include detailed steps to
 reproduce the issue, and any other information that could aid an
-investigation. Our policy is to respond to vulernability reports
-within 14 days.
-
-Our policy is to address critical security vulnerabilities rapidly and
+investigation. Our policy is to respond to vulnerability reports
+within 14 days, address critical security vulnerabilities rapidly and
 post patches as quickly as possible.
 
 ## Known Vulnerabilities
