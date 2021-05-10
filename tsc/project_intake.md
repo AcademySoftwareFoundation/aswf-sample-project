@@ -3,9 +3,9 @@
 This is a checklist for TSC's to review as part of the intake process. The TSC should review this entire list during the kickoff meeting. For anything outstanding, create an [issue](../issues) to track and link to it in the list
 
 - Existing Project Governance
-  - [ ] Project License exists ( [LICENSE.md](../LICENSE.md) ) and is OSI-approved
+  - [ ] Project License exists ( [LICENSE.md](../LICENSE) ) and is OSI-approved
   - [ ] Any third-party components/dependencies included are listed along with thier licenses ( [THIRD_PARTY.md](../THIRD_PARTY.md) )
-  - [ ] Governamce defined, outlining community roles and how decsions are made ( [GOVERNANCE.md](../GOVERNANCE.md] )
+  - [ ] Governamce defined, outlining community roles and how decsions are made ( [GOVERNANCE.md](../GOVERNANCE.md) )
   - [ ] Contribution Policy defined ( [CONTRIBUTING.md](../CONTRIBUTING.md) )
   - [ ] Code of Conduct defined ( existing or pull from [ASWF Sample Project](https://github.com/AcademySoftwareFoundation/aswf-sample-project/blob/master/CODE_OF_CONDUCT.md) )
   - [ ] Release methodology defined	( [release.md](process/release.md) )
