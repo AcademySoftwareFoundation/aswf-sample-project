@@ -31,7 +31,7 @@ This is a checklist for TSC's to review as part of the intake process. The TSC s
   - [ ] Domain name	( create [issue on foundation repo](https://github.com/AcademySoftwareFoundation/foundation/issues/new) to setup/transfer
 	- [ ] Social media accounts	( create [issue on foundation repo](https://github.com/AcademySoftwareFoundation/foundation/issues/new) to setup/transfer
 	- [ ] Logo(s)	( create pull request [against artwork repo](https://github.com/AcademySoftwareFoundation/artwork) to add in SVG and PNG format and color/black/white )
-	- [ ] Trademarks/mark ownership rights ( complete [LF Projects - Form of Trademark and Account Assignment](lf_projects_trademark_assignment.md) )
+	- [ ] Trademarks/mark ownership rights ( complete 'LF Projects - Form of Trademark and Account Assignment' - create [issue on foundation repo](https://github.com/AcademySoftwareFoundation/foundation/issues/new) )
 - Outreach
   - [ ] New project annoucement done ( create [issue on foundation repo](https://github.com/AcademySoftwareFoundation/foundation/issues/new) to trigger )
   - [ ] Project added to ASWF website and ASWF landscape
@@ -39,7 +39,7 @@ This is a checklist for TSC's to review as part of the intake process. The TSC s
   - [ ] CII Badge	achieved
   - [ ] Committer Diversity	established
 	- [ ] Commit/Contribution growth during incubation
-	- [ ] Committers defined in the project	( [COMMITTERS.csv](COMMITTERS.csv) or [COMMITTERS.yml](COMMITTERS.yml) )
+	- [ ] Committers defined in the project	( [COMMITTERS.csv](../COMMITTERS.csv) or similar file )
   - [ ] TAC representative appointed
   - [ ]	License scan completed and no issues found
   - [ ] Code repository imported to ASWF GitHub organization
