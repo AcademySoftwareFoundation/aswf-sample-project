@@ -13,6 +13,7 @@ This is a checklist for TSC's to review as part of the intake process. The TSC s
   - [ ] A [GOVERNANCE.md](../GOVERNANCE.md) file that documents the project’s technical governance.
   - [ ] A [SUPPORT.md](../SUPPORT.md) file to let users and developers know about ways to get help with your project.
 - Infrastructure/Assets
+  - [ ] Technical Charter Approved
   - [ ]	License scan completed and no issues found
   - [ ]	Code repository imported to ASWF GitHub organization or ownership of current GitHub organization given to `thelinuxfoundation` user
     - [ ] Developer Certificate of Origin past commit signoff done and DCO Probot enabled.
@@ -37,16 +38,29 @@ This is a checklist for TSC's to review as part of the intake process. The TSC s
     - [ ] Approved by TSC
     - [ ] Filed ( create pull request against [foundation repo](https://github.com/AcademySoftwareFoundation/foundation) )
   - [ ] [Core Infrastructure Initiative Best Practices Badge](https://bestpractices.coreinfrastructure.org/) achieved as the 'Passing' level.
-  - [ ] TAC representative appointed
 - Outreach
   - [ ] New project annoucement done ( create [issue on foundation repo](https://github.com/AcademySoftwareFoundation/foundation/issues/new) to trigger )
   - [ ] Project added to ASWF website and ASWF landscape
+- Incubation Stage requirements
+  - [ ] Have achieved and maintained a [OpenSSF Best Practices Badge at the passing level](https://bestpractices.coreinfrastructure.org/en/criteria).
+  - [ ] Have had a successful license scan with any critical issues remedied.
+  - [ ] Have a defined project mission and scope
+	- [ ] An overview of the project’s architecture and features defined.
+  - [ ] A project roadmap defined, which should address the following questions.
+    - What use cases are possible now?
+    - What does the next year look like in terms of additional features and use cases covered?
+  - [ ] Community and contributor growth assessment
+    - The current number of contributors and committers, and the number of different organizations contributing to the project.
+    - Demonstrate a sustained flow of commits / merged contributions
+    - A credible plan for developing a thriving user community, in particular expanding the number of committers and contributors?
+    - Outline of the plan for the project to complete the requirements for Adopted Stage
+  - [ ] Obtain an affirmative vote of the TAC.
 - Adopted Stage graduation requirements
-  - [ ] CII Badge	achieved
   - [ ] Demonstrate a substantial ongoing flow of commits and merged contributions, authored by a healthy number of diverse contributors*.
   - [ ] Demonstrable roadmap progress.
   - [ ] A healthy number of public adopters that are identified within the project ( using an ADOPTERS file or showcased on the project’s website ).
-  - [ ] [Core Infrastructure Initiative Best Practices Badge](https://bestpractices.coreinfrastructure.org/) achieved as the 'Passing' level.
-  - [ ] Submit intent to graduate to TAC for consideration during future meeting, outlining achievement of the [Adopted stage requirements](https://tac.aswf.io/process/lifecycle.html#adopted-stage)
+  - [ ] Have achieved and maintained an [OpenSSF Best Practices Badge at the gold level](https://bestpractices.coreinfrastructure.org/en/criteria/2).
+  - [ ] Have a technical lead appointed for voting representation of the project to the TAC.
+  - [ ] Be deemed by the TAC to add value to the mission of ASWF.
   - [ ] 2/3 supermajority vote of the TAC
   - [ ] Affirmative majority vote of the Governing Board
