@@ -1,4 +1,4 @@
-name: Release Notice
+name: Publish Release Notice to ASWF Slack
 
 on:
   release:
