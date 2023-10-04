@@ -3,7 +3,7 @@ name: Publish Release Notice to ASWF Slack
 on:
   release:
     types:
-      - created
+      - released
 
 jobs:
   publish:
