@@ -20,4 +20,4 @@ jobs:
         release_version: ${{ github.event.release.name }}
         release_url: ${{ github.event.release.html_url }}
         release_notes: ${{ github.event.release.body }}
-      uses: jmertic/slack-release-notifier@latest
+      uses: jmertic/slack-release-notifier@main
