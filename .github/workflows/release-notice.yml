@@ -10,9 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
-    steps:
+    Steps:
     - name: Notify Slack
       id: slack
       with:
-        slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_RELEASES_URL }}
-      uses: fedecalendino/slack-release-notifier@v1.2.1
+        project_name: "ASWF Sample Project"
+        slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
+        project_logo: "https://artwork.aswf.io/other/aswf/text/aqua/aswf-text-aqua.png"
+        release_version: ${{ github.event.release.name }}
+        release_url: ${{ github.event.release.html_url }}
+        release_notes: ${{ github.event.release.body }}
+      uses: jmertic/slack-release-notifier@latest
