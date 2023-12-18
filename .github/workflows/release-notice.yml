@@ -16,6 +16,7 @@ jobs:
       with:
         project_name: "ASWF Sample Project"
         slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
+        slack_channel: "#test-release-announcements"
         project_logo: "https://artwork.aswf.io/other/aswf/text/aqua/aswf-text-aqua.png"
         release_version: ${{ github.event.release.name }}
         release_url: ${{ github.event.release.html_url }}
